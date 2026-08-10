@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 325 108" role="img" aria-label="ClymbUp.ai">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#2258cc"/>
+      <stop offset="50%"  stop-color="#4da3ff"/>
+      <stop offset="100%" stop-color="#7cf0c5"/>
+    </linearGradient>
+    <filter id="glow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Swoosh arc sweeping from lower-left under the text -->
+  <path
+    d="M 12 87 Q 118 114 212 80"
+    stroke="url(#grad)"
+    stroke-width="5"
+    fill="none"
+    stroke-linecap="round"
+    filter="url(#glow)"
+  />
+
+  <!-- Arrow shaft rising up-right from "Up" -->
+  <path
+    d="M 212 80 L 260 16"
+    stroke="url(#grad)"
+    stroke-width="5"
+    fill="none"
+    stroke-linecap="round"
+    filter="url(#glow)"
+  />
+
+  <!--
+    Arrowhead at tip (260, 16).
+    Shaft direction: (48, -64) → normalized (0.600, -0.800), perp (0.800, 0.600).
+    Back 17px from tip: (260-10.2, 16+13.6) = (249.8, 29.6)
+    Wing A (+11px perp): (249.8+8.8, 29.6+6.6) = (258.6, 36.2)
+    Wing B (-11px perp): (249.8-8.8, 29.6-6.6) = (241.0, 23.0)
+  -->
+  <polygon
+    points="260,16 259,36 241,23"
+    fill="url(#grad)"
+    filter="url(#glow)"
+  />
+
+  <!-- "Clymb" white · "Up" blue — same text run, no gap -->
+  <text
+    x="20"
+    y="76"
+    font-family="Inter, ui-sans-serif, system-ui, -apple-system, Helvetica, Arial, sans-serif"
+    font-size="52"
+    font-weight="800"
+    letter-spacing="-2"
+  ><tspan fill="#eaf0ff">Clymb</tspan><tspan fill="#4da3ff">Up</tspan></text>
+
+  <!-- ".ai" tight against "ClymbUp" -->
+  <text
+    x="250"
+    y="76"
+    font-family="Inter, ui-sans-serif, system-ui, -apple-system, Helvetica, Arial, sans-serif"
+    font-size="36"
+    font-weight="500"
+    letter-spacing="-0.5"
+    fill="#4da3ff"
+  >.ai</text>
+</svg>

@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="16x16" href="/Clymbup16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Clymbup32.png">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Book a Discovery Call | ClymbUp.ai</title>
+  <meta name="description" content="Request a 15–30 minute discovery call. Submit your details, then pick a time that works." />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --text:#e8eefc;
+      --muted:#a9b6d4;
+      --border:rgba(255,255,255,.10);
+      --good:#1f8f5f;
+      --bad:#d84b4b;
+      --input:#ffffff;
+      --inputText:#0b1220;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:radial-gradient(1200px 600px at 50% 15%, #152a57 0%, var(--bg) 60%);
+      color:var(--text);
+      padding:48px 16px;
+    }
+    .wrap{width:100%; max-width:980px; margin:0 auto;}
+    .topbar{
+      display:flex; justify-content:space-between; align-items:center; gap:12px;
+      margin-bottom:14px;
+    }
+    .brand{
+      font-weight:900; letter-spacing:.2px; color:var(--text);
+      text-decoration:none; font-size:16px; opacity:.92;
+    }
+    .brand:hover{opacity:1}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:34px;
+      box-shadow:0 18px 50px rgba(0,0,0,.45);
+    }
+    h1{margin:0 0 10px 0; font-size:34px; letter-spacing:.2px;}
+    p.lead{margin:0 0 22px 0; color:var(--muted); line-height:1.5; max-width:78ch;}
+    .pillrow{display:flex; gap:10px; flex-wrap:wrap; margin:0 0 18px 0;}
+    .pill{
+      font-size:13px; color:var(--muted);
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.12);
+      padding:7px 10px; border-radius:999px;
+    }
+
+    .grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+    @media (max-width:760px){ .grid{grid-template-columns:1fr;} }
+
+    label{display:block; font-weight:700; margin:0 0 8px 0;}
+    .req::after{content:" *"; color:#ffb4b4; font-weight:900;}
+    input, select, textarea{
+      width:100%;
+      padding:14px 14px;
+      border-radius:10px;
+      border:1px solid rgba(0,0,0,0);
+      outline:none;
+      background:var(--input);
+      color:var(--inputText);
+      font-size:16px;
+    }
+    textarea{min-height:110px; resize:vertical;}
+    input:focus, select:focus, textarea:focus{box-shadow:0 0 0 4px rgba(45,109,246,.25);}
+    .hint{margin:8px 0 0 0; color:var(--muted); font-size:13px; line-height:1.4;}
+    .row{margin-bottom:16px;}
+
+    .checks{
+      margin-top:6px;
+      padding:14px 14px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.10);
+    }
+    .check{
+      display:flex; gap:10px; align-items:flex-start; margin:10px 0;
+    }
+    .check input{width:18px; height:18px; margin-top:2px;}
+    .check span{color:var(--text); line-height:1.35;}
+    .check small{display:block; color:var(--muted); margin-top:4px; line-height:1.35;}
+
+    .actions{margin-top:18px;}
+    button{
+      width:100%;
+      border:0;
+      border-radius:12px;
+      padding:14px 16px;
+      font-size:18px;
+      font-weight:850;
+      background:linear-gradient(180deg, #2f74ff, #2258cc);
+      color:white;
+      cursor:pointer;
+    }
+    button:disabled{opacity:.55; cursor:not-allowed;}
+
+    .alert{
+      margin-top:16px;
+      border-radius:12px;
+      padding:14px 16px;
+      border:1px solid var(--border);
+      display:none;
+    }
+    .alert.good{background:rgba(31,143,95,.18); border-color:rgba(31,143,95,.45);}
+    .alert.bad{background:rgba(216,75,75,.16); border-color:rgba(216,75,75,.45);}
+    .alert b{display:block; margin-bottom:6px;}
+
+    .footer{
+      margin-top:18px;
+      display:flex; gap:16px; justify-content:center; flex-wrap:wrap;
+      color:var(--muted); font-size:13px;
+    }
+    .footer a{color:var(--muted); text-decoration:none;}
+    .footer a:hover{color:var(--text);}
+
+    /* Calendly container */
+    .cal-wrap{
+      display:none;
+      margin-top:12px;
+      border:1px solid var(--border);
+      border-radius:16px;
+      overflow:hidden;
+      background:rgba(0,0,0,.10);
+    }
+    .cal-head{
+      padding:14px 16px;
+      border-bottom:1px solid var(--border);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .cal-head .title{font-weight:850;}
+    .cal-head .sub{color:var(--muted); font-size:13px;}
+    .cal-body{min-height:1100px;} /* gives calendly room */
+    .smallbtn{
+      background:transparent;
+      border:1px solid var(--border);
+      color:var(--text);
+      padding:8px 10px;
+      border-radius:10px;
+      font-weight:750;
+      cursor:pointer;
+      font-size:13px;
+    }
+    .smallbtn:hover{border-color:rgba(255,255,255,.25);}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="/">CLYMBUP.AI</a>
+      <a class="brand" href="tel:7605655905">Demo: (760) 565-5905</a>
+    </div>
+
+    <div class="card">
+      <h1>Book a Discovery Call</h1>
+      <p class="lead">
+        Step 1: tell us about your business. Step 2: pick a time on the calendar.
+        This is a short 15–30 minute call to understand your pain points and show what we can do.
+      </p>
+
+      <div class="pillrow">
+        <span class="pill">15–30 minutes</span>
+        <span class="pill">America/Los_Angeles time</span>
+        <span class="pill">No obligation</span>
+      </div>
+
+      <form id="lead-form" novalidate>
+        <div class="grid">
+          <div class="row">
+            <label class="req" for="name">Name</label>
+            <input id="name" type="text" autocomplete="name" placeholder="e.g. Kevin O’Donnell" required />
+          </div>
+
+          <div class="row">
+            <label class="req" for="phone">Mobile Phone</label>
+            <input id="phone" type="tel" autocomplete="tel" placeholder="e.g. (760) 555-1234" required />
+            <p class="hint">US numbers only. Don’t include +1 — we’ll normalize it.</p>
+          </div>
+
+          <div class="row">
+            <label for="email">Email (optional)</label>
+            <input id="email" type="email" autocomplete="email" placeholder="e.g. you@company.com" />
+          </div>
+
+          <div class="row">
+            <label class="req" for="businessType">Type of business</label>
+            <select id="businessType" required>
+              <option value="" selected disabled>Select one…</option>
+              <option>Plumbing</option>
+              <option>HVAC</option>
+              <option>Electrician</option>
+              <option>Roofing</option>
+              <option>Landscaping</option>
+              <option>Pest control</option>
+              <option>Cleaning</option>
+              <option>Real estate</option>
+              <option>Medical / clinic</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <label for="notes">What’s going on? (optional)</label>
+          <textarea id="notes" placeholder="Examples: missing calls after-hours, want SMS follow-ups, need appointment scheduling, lead qualification, etc."></textarea>
+          <p class="hint">This helps keep the call useful instead of generic.</p>
+        </div>
+
+        <div class="checks">
+          <div class="check">
+            <input id="contactOk" type="checkbox" />
+            <span>
+              <b class="req" style="font-weight:850;">I agree to be contacted about scheduling this call.</b>
+              <small>We may contact you by phone or email (if provided) about your request.</small>
+            </span>
+          </div>
+
+          <div class="check">
+            <input id="smsConsent" type="checkbox" />
+            <span>
+              <b style="font-weight:850;">Optional: I agree to receive SMS messages from ClymbUp.ai.</b>
+              <small>Message and data rates may apply. Message frequency varies. Reply STOP to unsubscribe or HELP for help. Consent is not a condition of purchase.</small>
+            </span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="submitBtn" type="submit">Continue to scheduling</button>
+        </div>
+
+        <div id="result" class="alert"></div>
+
+        <div class="footer">
+          <a href="/">Home</a>
+          <a href="/privacy/">Privacy Policy</a>
+          <a href="/sms/">SMS Disclosure</a>
+          <a href="/terms/">Terms</a>
+        </div>
+      </form>
+
+      <!-- Calendly -->
+      <div id="calWrap" class="cal-wrap">
+        <div class="cal-head">
+          <div>
+            <div class="title">Step 2: Pick a time</div>
+            <div class="sub">All availability is shown in America/Los_Angeles time.</div>
+          </div>
+          <button id="editInfoBtn" class="smallbtn" type="button">Edit my info</button>
+        </div>
+        <div id="calendly-embed" class="cal-body"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calendly embed script -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+  <script>
+  (() => {
+    // Your Calendly event
+    const CALENDLY_EVENT_URL = "https://calendly.com/kevin-clymbup/clymbup-ai-discovery-call";
+
+    // Lead capture endpoint (nginx -> n8n -> Postgres)
+    const LEAD_WEBHOOK_URL = "/api/strategy/lead";
+
+    // Keep this synced with the visible disclosure wording
+    const SMS_CONSENT_TEXT_SNAPSHOT =
+      "I agree to receive SMS messages from ClymbUp.ai. Message and data rates may apply. Message frequency varies. Reply STOP to unsubscribe or HELP for help. Consent is not a condition of purchase.";
+
+    // Elements
+    const form = document.getElementById("lead-form");
+    const submitBtn = document.getElementById("submitBtn");
+    const result = document.getElementById("result");
+
+    const nameEl = document.getElementById("name");
+    const phoneEl = document.getElementById("phone");
+    const emailEl = document.getElementById("email");
+    const bizEl = document.getElementById("businessType");
+    const notesEl = document.getElementById("notes");
+    const contactOkEl = document.getElementById("contactOk");
+    const smsConsentEl = document.getElementById("smsConsent");
+
+    const calWrap = document.getElementById("calWrap");
+    const calParent = document.getElementById("calendly-embed");
+    const editInfoBtn = document.getElementById("editInfoBtn");
+
+    function showResult(ok, title, message) {
+      result.className = "alert " + (ok ? "good" : "bad");
+      result.style.display = "block";
+      result.innerHTML = `<b>${title}</b><div>${message}</div>`;
+      result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    function digitsOnly(s) {
+      return (s || "").replace(/\D/g, "");
+    }
+
+    // Front-end validation only; backend must validate too.
+    function isValidUSPhone(raw) {
+      let d = digitsOnly(raw);
+      if (d.length === 11 && d.startsWith("1")) d = d.slice(1);
+      return d.length === 10;
+    }
+
+    function isValidEmailOrEmpty(raw) {
+      const v = (raw || "").trim();
+      if (!v) return true;
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    }
+
+    // Build Calendly URL with prefill query params
+    // IMPORTANT: a1..a4 map to custom questions in order.
+    function buildCalendlyPrefillUrl({ name, email, phone, businessType, notes, leadId }) {
+      const u = new URL(CALENDLY_EVENT_URL);
+
+      // Invitee prefill
+      u.searchParams.set("name", name);
+      if (email) u.searchParams.set("email", email);
+
+      // Force display timezone (Calendly will also respect locked event timezone)
+      u.searchParams.set("timezone", "America/Los_Angeles");
+
+      // Custom answers: a1..a4
+      // 1) Phone, 2) Business type, 3) Notes, 4) Lead ID
+      u.searchParams.set("a1", phone);
+      u.searchParams.set("a2", businessType);
+      if (notes) u.searchParams.set("a3", notes);
+      if (leadId) u.searchParams.set("a4", String(leadId));
+
+      // Optional: hide GDPR banner if it appears
+      u.searchParams.set("hide_gdpr_banner", "1");
+
+      return u.toString();
+    }
+
+    function clearCalendlyEmbed() {
+      calParent.innerHTML = "";
+    }
+
+function showCalendly(prefillUrl) {
+  // Reveal container first
+  calWrap.style.display = "block";
+  clearCalendlyEmbed();
+
+  // Scroll immediately (don’t wait on Calendly script)
+  calWrap.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  const init = () => {
+    if (!window.Calendly || !window.Calendly.initInlineWidget) return false;
+
+    window.Calendly.initInlineWidget({
+      url: prefillUrl,
+      parentElement: calParent
+    });
+
+    // After iframe injection, nudge scroll again so it's aligned
+    setTimeout(() => {
+      calWrap.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 350);
+
+    return true;
+  };
+
+  if (init()) return;
+
+  // Retry until Calendly script is available
+  let tries = 0;
+  const t = setInterval(() => {
+    tries++;
+    if (init()) {
+      clearInterval(t);
+      return;
+    }
+    if (tries >= 25) {
+      clearInterval(t);
+      showResult(false, "Calendar failed to load", "Refresh the page and try again.");
+      console.error("Calendly widget.js never became available.");
+    }
+  }, 200);
+}
+
+      calWrap.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    editInfoBtn.addEventListener("click", () => {
+      // Let them edit and resubmit
+      calWrap.style.display = "none";
+      clearCalendlyEmbed();
+      result.style.display = "none";
+      form.style.display = "block";
+      form.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      result.style.display = "none";
+
+      const name = (nameEl.value || "").trim();
+      const phone = (phoneEl.value || "").trim();
+      const email = (emailEl.value || "").trim();
+      const businessType = (bizEl.value || "").trim();
+      const notes = (notesEl.value || "").trim();
+      const wantsSms = !!smsConsentEl.checked;
+
+      if (!name) return showResult(false, "Missing info", "Please enter your name.");
+      if (!phone) return showResult(false, "Missing info", "Please enter a mobile phone number.");
+      if (!isValidUSPhone(phone)) return showResult(false, "Invalid phone", "Please enter a valid US phone number (10 digits).");
+      if (!businessType) return showResult(false, "Missing info", "Please select a business type.");
+      if (!contactOkEl.checked) return showResult(false, "Consent required", "You must agree to be contacted about scheduling this call.");
+      if (!isValidEmailOrEmpty(email)) return showResult(false, "Invalid email", "Please enter a valid email address or leave it blank.");
+
+      const payload = {
+        name,
+        phone, // raw input; backend should normalize to e164
+        email: email || null,
+        business_type: businessType,
+        notes: notes || null,
+
+        contact_consent: true,
+
+        sms_consent: wantsSms,
+        sms_consent_text: wantsSms ? SMS_CONSENT_TEXT_SNAPSHOT : null,
+
+        page_url: window.location.href
+      };
+
+      try {
+        submitBtn.disabled = true;
+
+        const res = await fetch(LEAD_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        const text = await res.text();
+        let data = null;
+        try { data = text ? JSON.parse(text) : null; } catch { data = null; }
+
+        if (!res.ok) {
+          const msg = data?.message || `Submission failed (HTTP ${res.status}). Please try again.`;
+          showResult(false, "Submission failed", msg);
+          return;
+        }
+
+        const leadId = data?.lead_id;
+        if (!leadId) {
+          showResult(false, "Submission failed", "We couldn't confirm your info was saved. Please try again.");
+          console.error("No lead_id returned. Raw response:", text);
+          return;
+        }
+
+        showResult(true, "Saved", "Now pick a time on the calendar below.");
+
+        // Hide the form and show Calendly
+        form.style.display = "none";
+
+        const calendlyUrl = buildCalendlyPrefillUrl({
+          name,
+          email,
+          phone,
+          businessType,
+          notes,
+          leadId
+        });
+
+        showCalendly(calendlyUrl);
+
+      } catch (err) {
+        console.error(err);
+        showResult(false, "Submission failed", "Network error. Please try again.");
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  })();
+  </script>
+</body>
+</html>
+

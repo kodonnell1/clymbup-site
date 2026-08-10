@@ -1,0 +1,369 @@
+class="bullets">
+            <li><b>AI receptionist</b> that answers, qualifies, and captures lead details.</li>
+            <li><b>Lead routing</b> to the right person — instantly.</li>
+            <li><b>Follow-up aclass="bullets">
+            <li><b>AI receptionist</b> that answers, qualifies, and captures lead details.</li>
+            <li><b>Lead routing</b> to the right person — instantly.</li>
+            <li><b>Follow-up aclass="bullets">
+            <li><b>AI receptionist</b> that answers, qualifies, and captures lead details.</li>
+            <li><b>Lead routing</b> to the right person — instantly.</li>
+            <li><b>Follow-up aclass="bullets">
+            <li><b>AI receptionist</b> that answers, qualifies, and captures lead details.</li>
+            <li><b>Lead routing</b> to the right person — instantly.</li>
+            <li><b>Follow-up aclass="bullets">
+            <li><b>AI receptionist</b> that answers, qualifies, and captures lead details.</li>
+            <li><b>Lead routing</b> to the right person — instantly.</li>
+            <li><b>Follow-up aclass="bullets">
+            <li><b>AI receptionist</b> that answers, qualifies, and captures lead details.</li>
+            <li><b>Lead routing</b> to the right person — instantly.</li>
+            <li><b>Follow-up aclass="bullets">
+            <li><b>AI receptionist</b> that answers, qualifies, and captures lead details.</li>
+            <li><b>Lead routing</b> to the right person — instantly.</li>
+            <li><b>Follow-up aclass="bullets">
+            <li><b>AI receptionist</b> that answers, qualifies, and captures lead details.</li>
+            <li><b>Lead routing</b> to the right person — instantly.</li>
+            <li><b>Follow-up aclass="bullets">
+            <li><b>AI receptionist</b> that answers, qualifies, and captures lead details.</li>
+            <li><b>Lead routing</b> to the right person — instantly.</li>
+            <li><b>Follow-up a<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ClymbUp.ai — Every call answered. Every lead captured. Every time.</title>
+  <meta name="description" content="AI receptionist + automation for home service businesses. Stop missing calls. Capture every lead. Book more jobs." />
+  <meta name="robots" content="index,follow" />
+  <style>
+.logo-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0 12px 0;
+}
+
+.logo {
+  height: 56px;
+  width: auto;
+}
+
+    :root{
+      --bg:#0b1220;
+      --panel:#0f1a2e;
+      --text:#eaf0ff;
+      --muted:#b7c3e6;
+      --line:rgba(255,255,255,.12);
+      --accent:#4da3ff;
+      --accent2:#7cf0c5;
+      --danger:#ff5a6a;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(77,163,255,.25), transparent 60%),
+                  radial-gradient(900px 500px at 85% 10%, rgba(124,240,197,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+    a{color:inherit}
+    .wrap{max-width:1100px;margin:0 auto;padding:28px 18px 70px}
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:14px;
+      padding:10px 0 22px;border-bottom:1px solid var(--line);
+    }
+    .brand{
+      display:flex;align-items:center;gap:10px;font-weight:750;letter-spacing:.2px;
+    }
+    .mark{
+      width:36px;height:36px;border-radius:12px;
+      background: linear-gradient(135deg, rgba(77,163,255,.95), rgba(124,240,197,.9));
+      box-shadow: var(--shadow);
+    }
+    .brand small{display:block;color:var(--muted);font-weight:600;letter-spacing:0}
+    nav{display:flex;gap:12px;flex-wrap:wrap}
+    .chip{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      padding:8px 12px;border-radius:999px;
+      text-decoration:none;color:var(--muted);
+      font-weight:650;font-size:13px;
+    }
+    .hero{
+      display:grid;grid-template-columns: 1.2fr .8fr;gap:18px;
+      padding:34px 0 18px;
+    }
+    @media (max-width: 900px){ .hero{grid-template-columns:1fr} }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:22px;
+    }
+    h1{
+      margin:0 0 10px;
+      font-size: 44px;
+      line-height:1.05;
+      letter-spacing:-.6px;
+    }
+    @media (max-width: 520px){ h1{font-size:36px} }
+    .sub{
+      color:var(--muted);
+      font-size:16px;
+      margin:0 0 16px;
+      max-width:60ch;
+    }
+    .tagline{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight:750;
+      margin: 10px 0 18px;
+    }
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--accent2)}
+    .ctaRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:12px 14px;border-radius:14px;
+      text-decoration:none;font-weight:800;
+      border:1px solid transparent;
+      white-space:nowrap;
+    }
+    .btnPrimary{
+      background: linear-gradient(135deg, rgba(77,163,255,1), rgba(124,240,197,1));
+      color:#07101d;
+      box-shadow: var(--shadow);
+    }
+    .btnGhost{
+      border-color: var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+    }
+    .fine{
+      color:var(--muted);
+      font-size:13px;
+      margin:10px 0 0;
+    }
+    .side h2{margin:0 0 10px;font-size:18px}
+    .bullets{margin:0;padding-left:18px;color:var(--muted)}
+    .bullets li{margin:10px 0}
+    .stat{
+      margin-top:14px;
+      padding:14px 14px;
+      border-radius:16px;
+      background: rgba(77,163,255,.08);
+      border: 1px solid rgba(77,163,255,.22);
+    }
+    .stat b{color:#d7ecff}
+    .grid{
+      display:grid;grid-template-columns: repeat(3, 1fr);gap:14px;margin-top:16px;
+    }
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr} }
+    h3{margin:0 0 8px;font-size:16px}
+    .p{color:var(--muted);margin:0}
+    .sectionTitle{
+      margin:28px 0 12px;
+      font-size:22px;letter-spacing:-.2px;
+    }
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width: 900px){ .steps{grid-template-columns:1fr} }
+    .stepNum{
+      width:28px;height:28px;border-radius:10px;
+      display:inline-flex;align-items:center;justify-content:center;
+      background:rgba(77,163,255,.18);
+      border:1px solid rgba(77,163,255,.35);
+      color:var(--text);font-weight:850;font-size:14px;
+      margin-bottom:10px;
+    }
+    details{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      border-radius:16px;
+      padding:12px 14px;
+    }
+    details + details{margin-top:10px}
+    summary{cursor:pointer;font-weight:800}
+    footer{
+      margin-top:34px;
+      padding-top:18px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;
+      display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    }
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+	<div class="logo-wrap">
+	  <img class="logo" src="/assets/ClymbUp_white_bg.png" alt="ClymbUp.ai">
+	</div>
+      <div class="brand">
+        <div class="mark" aria-hidden="true"></div>
+        <div>
+          <div>ClymbUp.ai</div>
+          <small>AI + automation for home services</small>
+        </div>
+      </div>
+       <nav>
+        <a class="chip" href="#how">How it works</a>
+        <a class="chip" href="#what">What we do</a>
+        <a class="chip" href="#faq">FAQ</a>
+        <a class="chip" href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="card">
+          <h1>Stop missing calls.<br/>Start booking more jobs.</h1>
+          <p class="sub">
+            ClymbUp builds AI receptionists and automations for small home-service businesses
+            so every lead gets captured, routed, and followed up — without hiring another office person.
+          </p>
+
+          <div class="tagline"><span class="dot"></span>Every call answered. Every lead captured. Every time.</div>
+
+          <div class="ctaRow" id="contact">
+            <a class="btn btnPrimary"
+               href="mailto:kevin@clymbup.ai?subject=Strategy%20Call%20Request%20%E2%80%94%20ClymbUp&body=Hi%20Kevin%2C%0A%0AI'm%20ready%20to%20book%20a%20strategy%20call.%0A%0ABusiness%20name%3A%0ATrade%20(plumbing%2FHVAC%2Felectrical%2Fcleaning%2Fetc.)%3A%0APhone%20number%3A%0ABest%20time%20to%20reach%20me%3A%0ABiggest%20problem%20(missed%20calls%2Flead%20routing%2Ffollow-up%2Fdispatch)%3A%0A%0AThanks!">
+              Book a strategy call →
+            </a>
+
+            <a class="btn btnGhost" href="tel:+17605655905">
+              Call our AI agent (24/7) →
+            </a>
+          </div>
+
+          <p class="fine">
+            Call <b>(760) 565-5905</b> anytime. It’s answered by our AI agent 24/7 — it can answer questions, run a live demonstration, and help you book a strategy call.
+          </p>
+        </div>
+
+        <aside class="card side">
+          <h2>What you get</h2>
+          <ul class="bullets">
+            <li><b>AI receptionist</b> that answers, qualifies, and captures lead details.</li>
+            <li><b>Lead routing</b> to the right person — instantly.</li>
+            <li><b>Follow-up automation</b> so leads don’t die in voicemail.</li>
+            <li><b>Operational support</b>: dispatch workflows, email triage, scheduling handoff.</li>
+          </ul>
+
+sudo nginx -t && sudo systemctl reload nginxsudo nginx -t && sudo systemctl reload nginx          <div class="stat">
+            <b>Reality check:</b> if your phone goes to voicemail while you’re on a job, you’re donating revenue to your competitors.
+          </div>
+        </aside>
+      </section>
+
+      <section id="what">
+        <h2 class="sectionTitle">What we do</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>AI receptionist</h3>
+            <p class="p">Answers calls, sounds professional, collects lead details, and routes the request.</p>
+          </div>
+          <div class="card">
+            <h3>Missed-call prevention</h3>
+            <p class="p">You stay on the job. The agent stays on the phone. Leads don’t disappear.</p>
+          </div>
+          <div class="card">
+            <h3>Workflow automation</h3>
+            <p class="p">Routing, summaries, follow-ups, email handling, dispatch workflows — built around your process.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="how">
+        <h2 class="sectionTitle">How it works</h2>
+        <div class="steps">
+          <div class="card">
+            <div class="stepNum">1</div>
+            <h3>We find the leakage</h3>
+            <p class="p">Where calls get missed, where leads stall, where follow-up dies.</p>
+          </div>
+          <div class="card">
+            <div class="stepNum">2</div>
+            <h3>We build the system</h3>
+            <p class="p">Voice agent + routing + summaries + follow-up automation. Simple. Effective.</p>
+          </div>
+          <div class="card">
+            <div class="stepNum">3</div>
+            <h3>We launch and tune</h3>
+            <p class="p">We iterate until it reliably captures leads and drives booked jobs.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq">
+        <h2 class="sectionTitle">FAQ</h2>
+
+        <details>
+          <summary>Is this some annoying phone robot?</summary>
+          <div class="p" style="margin-top:10px;">
+            No. It’s designed to be short, natural, and useful. If it can’t help, it routes the call.
+          </div>
+        </details>
+
+        <details>
+          <summary>Can I try it right now?</summary>
+          <div class="p" style="margin-top:10px;">
+            Yes. Call <b>(760) 565-5905</b>. It’s answered 24/7 by our AI agent.
+          </div>
+        </details>
+
+        <details>
+          <summary>Do I have to change my business phone number?</summary>
+          <div class="p" style="margin-top:10px;">
+            Usually no. We typically forward calls from your existing number to the AI line and route back to you when needed.
+          </div>
+        </details>
+
+        <details>
+          <summary>What’s the next step?</summary>
+          <div class="p" style="margin-top:10px;">
+            Call the AI line, then email to book a strategy call. We’ll map your workflow and show you the quickest win.
+          </div>
+        </details>
+      </section>
+
+      <section style="margin-top:18px;">
+        <div class="card">
+          <h2 style="margin:0 0 10px;font-size:20px;">Ready to stop losing leads?</h2>
+          <p class="p" style="margin-bottom:14px;">
+            Book the strategy call or call the AI line. Either way, you’ll see what “always answered” looks like.
+          </p>
+          <div class="ctaRow">
+            <a class="btn btnPrimary"
+               href="mailto:kevin@clymbup.ai?subject=Strategy%20Call%20Request%20%E2%80%94%20ClymbUp&body=Hi%20Kevin%2C%0A%0AI'm%20ready%20to%20talk.%20Here%E2%80%99s%20my%20info%3A%0A%0ABusiness%20name%3A%0ATrade%3A%0APhone%3A%0ABest%20time%3A%0ABiggest%20issue%3A%0A%0AThanks!">
+              Book a strategy call →
+            </a>
+            <a class="btn btnGhost" href="tel:+17605655905">Call our AI agent (24/7) →</a>
+          </div>
+          <p class="fine mono">Email: kevin@clymbup.ai · Phone: (760) 565-5905</p>
+        </div>
+      </section>
+    </main>
+
+<footer>
+  <div>© <span id="y"></span> ClymbUp.ai</div>
+  <div>
+    <a href="/privacy">Privacy Policy</a> ·
+    <a href="/terms">Terms of Service</a> ·
+    <a href="/sms">SMS Policy</a>
+  </div>
+</footer>
+   </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

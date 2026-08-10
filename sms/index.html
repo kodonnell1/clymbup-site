@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="16x16" href="/Clymbup16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Clymbup32.png">
+  <meta charset="UTF-8">
+  <title>SMS Opt-In | ClymbUp.ai Text Messaging Program</title>
+  <meta name="description" content="ClymbUp.ai SMS disclosure — message frequency, how to opt out, and how we use SMS to deliver automation alerts and follow-ups for your home service business.">
+  <meta name="robots" content="index,follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://clymbup.ai/sms/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://clymbup.ai/" },
+      { "@type": "ListItem", "position": 2, "name": "SMS Disclosure", "item": "https://clymbup.ai/sms/" }
+    ]
+  }
+  </script>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clymbup.ai/sms/">
+  <meta property="og:title" content="SMS Opt-In | ClymbUp.ai Text Messaging Program">
+  <meta property="og:description" content="Sign up for SMS updates from ClymbUp.ai. Message and data rates may apply. Reply STOP at any time to opt out.">
+  <meta property="og:image" content="https://clymbup.ai/assets/ClymbUpai_banner1.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SMS Opt-In | ClymbUp.ai Text Messaging Program">
+  <meta name="twitter:description" content="Sign up for SMS updates from ClymbUp.ai. Message and data rates may apply. Reply STOP at any time to opt out.">
+  <meta name="twitter:image" content="https://clymbup.ai/assets/ClymbUpai_banner1.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="/assets/cu-animate.js" defer></script>
+  <style>
+    :root {
+      --bg-dark: #0b1220;
+      --card: rgba(255,255,255,.05);
+      --card-border: rgba(255,255,255,.10);
+      --primary: #4da3ff;
+      --primary-dark: #2563eb;
+      --text: #eaf0ff;
+      --muted: #8d9ec6;
+      --border: rgba(255,255,255,.10);
+      --success-bg: rgba(31,143,95,.18);
+      --success-border: rgba(124,240,197,.5);
+      --success-text: #7cf0c5;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse 1400px 700px at 18% -8%, rgba(77,163,255,.20), transparent 58%),
+        radial-gradient(ellipse 900px 600px at 88% 8%, rgba(124,240,197,.13), transparent 52%),
+        var(--bg-dark);
+      background-attachment: fixed;
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      background: linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 36px;
+      box-shadow: 0 16px 48px rgba(0,0,0,.5);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -.3px;
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: block;
+      color: #ffffff;
+    }
+
+input[type="tel"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #ffffff;        /* <-- white input */
+  color: #020617;             /* <-- dark text */
+  margin-bottom: 20px;
+}
+
+input[type="tel"]::placeholder {
+  color: #6b7280;             /* subtle gray placeholder */
+}
+
+input[type="tel"]:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+    .consent {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 13px;
+      color: var(--muted);
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.09);
+      padding: 14px;
+      border-radius: 12px;
+      margin-bottom: 22px;
+      line-height: 1.55;
+      cursor: pointer;
+    }
+
+    .consent input {
+      width: 16px;
+      height: 16px;
+      margin-top: 1px;
+      accent-color: var(--primary);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    button {
+      width: 100%;
+      background: linear-gradient(135deg, #4da3ff, #7cf0c5);
+      color: #07101d;
+      border: none;
+      padding: 14px;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(77,163,255,.35);
+      transition: transform .15s, box-shadow .15s;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(77,163,255,.45);
+    }
+    button:active { transform: none; }
+
+    .confirmation {
+      display: none;
+      margin-top: 22px;
+      padding: 16px;
+      background: var(--success-bg);
+      border: 1px solid var(--success-border);
+      color: var(--success-text);
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .footer {
+      margin-top: 28px;
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .footer a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .15s;
+    }
+
+    .footer a:hover {
+      color: #ffffff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container reveal">
+    <h1>SMS Notifications</h1>
+
+    <p>
+      Enter your mobile number to receive SMS messages from
+      <strong>ClymbUp.ai</strong> related to demos, follow-ups, and service
+      updates.
+    </p>
+
+    <form id="sms-form">
+      <label for="phone">Mobile Phone Number</label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        placeholder="e.g. 760-555-1234"
+        required
+      />
+
+      <div class="consent">
+        <input type="checkbox" id="consent" required />
+        <label for="consent">
+          I agree to receive SMS messages from ClymbUp.ai. Message and data
+          rates may apply. Message frequency varies. Reply STOP to unsubscribe
+          or HELP for help. Consent is not a condition of purchase.
+        </label>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div id="confirmation" class="confirmation" style="display:none;">
+      <span id="confirmation-text"></span>
+    </div>
+
+    <div class="footer">
+      <a href="/">Home</a>
+      <a href="/terms/">Terms and Conditions</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/sms/">SMS Disclosure</a>
+    </div>
+  </div>
+
+<script>
+(() => {
+  // nginx -> n8n proxy endpoint
+  const WEBHOOK_URL = "/api/sms/optin";
+
+  // Must match the visible disclosure text (keep this synced with the label)
+  const CONSENT_TEXT_SNAPSHOT =
+    "I agree to receive SMS messages from ClymbUp.ai. Message and data rates may apply. Message frequency varies. Reply STOP to unsubscribe or HELP for help.";
+
+  // Elements
+  const form = document.getElementById("sms-form");
+  const phoneInput = document.getElementById("phone");
+  const consentCheckbox = document.getElementById("consent");
+  const confirmation = document.getElementById("confirmation");
+
+  // Optional <span id="confirmation-text"></span> inside #confirmation
+  const confirmationTextEl = document.getElementById("confirmation-text") || null;
+
+  if (!form || !phoneInput || !consentCheckbox || !confirmation) {
+    console.error(
+      "Missing required DOM elements. Check ids: sms-form, phone, consent, confirmation."
+    );
+    return;
+  }
+
+  function setConfirmationMessage(message) {
+    if (confirmationTextEl) {
+      confirmationTextEl.textContent = message;
+    } else {
+      confirmation.textContent = message;
+    }
+  }
+
+  // Show message box but DO NOT hide the form unless it's a success
+  function showMessage(message, { isError = false, hideForm = false } = {}) {
+    if (hideForm) form.style.display = "none";
+    confirmation.style.display = "block";
+
+    // Optional: style hint (works if your CSS doesn't override it)
+    confirmation.style.borderColor = isError ? "rgba(255,80,80,0.9)" : "rgba(0,200,120,0.9)";
+
+    setConfirmationMessage(message);
+    confirmation.scrollIntoView({ behavior: "smooth" });
+  }
+
+  // Returns normalized E.164 (+1XXXXXXXXXX) or null if invalid
+  function normalizeUSPhoneToE164(raw) {
+    if (raw === null || raw === undefined) return null;
+
+    const s = String(raw).trim();
+    if (!s) return null;
+
+    let digits = s.replace(/\D/g, "");
+
+    // allow leading country code 1
+    if (digits.length === 11 && digits.startsWith("1")) digits = digits.slice(1);
+
+    if (digits.length !== 10) return null;
+
+    // Basic NANP sanity: area code & exchange cannot start with 0/1
+    const area = digits.slice(0, 3);
+    const exch = digits.slice(3, 6);
+    if (!/^[2-9]\d{2}$/.test(area)) return null;
+    if (!/^[2-9]\d{2}$/.test(exch)) return null;
+
+    return `+1${digits}`;
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Hide prior message (optional)
+    confirmation.style.display = "none";
+
+    const rawPhone = (phoneInput.value || "").trim();
+
+    // Consent gate (no popup; show in-page error)
+    if (!consentCheckbox.checked) {
+      showMessage("You must agree to receive SMS messages.", { isError: true, hideForm: false });
+      return;
+    }
+
+    // Client-side phone validation
+    const phoneE164 = normalizeUSPhoneToE164(rawPhone);
+    if (!phoneE164) {
+      showMessage("Enter a valid US phone number (10 digits).", { isError: true, hideForm: false });
+      return;
+    }
+
+    const payload = {
+      phone: rawPhone,                 // send raw so backend can normalize too
+      page_url: window.location.href,
+      consent_text: CONSENT_TEXT_SNAPSHOT,
+    };
+
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const text = await res.text();
+      let data = null;
+      try {
+        data = text ? JSON.parse(text) : null;
+      } catch {
+        data = null;
+      }
+
+      if (!res.ok) {
+        // If backend returns a useful message, show it
+        const backendMsg = data?.message || "There was an error submitting the form. Please try again.";
+        showMessage(backendMsg, { isError: true, hideForm: false });
+        console.error("Opt-in HTTP error:", res.status, text);
+        return;
+      }
+
+      // Decide message based on backend response
+      // Preferred: status field
+      if (data?.status === "invalid_phone") {
+        showMessage(data.message || "Enter a valid phone number.", { isError: true, hideForm: false });
+        return;
+      }
+
+      if (data?.status === "already_opted_in" || data?.already_opted_in === true) {
+        showMessage(
+          "You’re already opted in. No action needed. Reply STOP to unsubscribe or HELP for help.",
+          { isError: false, hideForm: true }
+        );
+      } else {
+        // default success (new opt-in)
+        showMessage(
+          "Thanks — you’re opted in. Reply STOP to unsubscribe or HELP for help.",
+          { isError: false, hideForm: true }
+        );
+      }
+
+      // Cleanup after a real success
+      phoneInput.value = "";
+      consentCheckbox.checked = false;
+
+    } catch (err) {
+      console.error("Opt-in fetch failed:", err);
+      showMessage("Network error submitting the form. Please try again.", { isError: true, hideForm: false });
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
+

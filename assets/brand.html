@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClymbUp.ai — Brand Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:      #0b1220;
+      --text:    #eaf0ff;
+      --muted:   #8d9ec6;
+      --accent:  #4da3ff;
+      --accent2: #7cf0c5;
+      --line:    rgba(255,255,255,.10);
+      --panel:   rgba(255,255,255,.06);
+      --panel2:  rgba(255,255,255,.03);
+      --shadow:  0 16px 48px rgba(0,0,0,.4);
+      --radius:  18px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); }
+
+    /* Layout */
+    .wrap { max-width: 900px; margin: 0 auto; padding: 60px 24px 100px; }
+    .section { margin-bottom: 64px; }
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin: 0 0 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* Cards */
+    .card { background: linear-gradient(160deg, var(--panel), var(--panel2)); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
+    .card--flat { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 20px; }
+    .card--hero { background: linear-gradient(160deg, rgba(77,163,255,.09), rgba(124,240,197,.06)); border: 1px solid rgba(77,163,255,.22); border-radius: var(--radius); padding: 36px; }
+    .card--stat { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 20px; text-align: center; }
+
+    /* Grid */
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 640px) { .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+    /* Page header */
+    .brand-header {
+      margin-bottom: 56px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand-header h1 {
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -.8px;
+      margin: 0 0 8px;
+    }
+    .brand-header p { color: var(--muted); margin: 0; }
+
+    /* Logo swatch */
+    .logo-swatch {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 36px;
+      border-radius: 14px;
+      margin-bottom: 10px;
+    }
+    .logo-swatch--dark  { background: #0b1220; border: 1px solid var(--line); }
+    .logo-swatch--mid   { background: #1a2540; border: 1px solid var(--line); }
+    .logo-swatch--light { background: #f0f4ff; border: 1px solid rgba(0,0,0,.1); }
+    .logo-swatch img, .logo-swatch svg { max-height: 56px; width: auto; }
+    .swatch-label { font-size: 11px; color: var(--muted); text-align: center; }
+
+    /* Color swatches */
+    .color-swatch {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .color-block { height: 64px; }
+    .color-meta { padding: 12px; background: rgba(255,255,255,.04); font-size: 12px; }
+    .color-name { font-weight: 700; display: block; margin-bottom: 3px; }
+    .color-values { color: var(--muted); font-family: monospace; font-size: 11px; display: flex; flex-direction: column; gap: 2px; }
+
+    /* Type scale */
+    .type-row {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .type-row:last-child { border-bottom: none; }
+    .type-meta { width: 160px; flex-shrink: 0; font-size: 12px; color: var(--muted); font-family: monospace; line-height: 1.5; }
+    .type-example { flex: 1; }
+
+    /* Weight specimens */
+    .weight-row { display: flex; align-items: center; gap: 16px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .weight-label { width: 80px; flex-shrink: 0; font-size: 11px; color: var(--muted); }
+    .weight-sample { font-size: 20px; letter-spacing: -.2px; flex: 1; }
+
+    /* Spacing scale */
+    .space-row { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+    .space-label { width: 80px; flex-shrink: 0; font-size: 12px; color: var(--muted); font-family: monospace; }
+    .space-bar { height: 8px; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 4px; }
+    .space-value { font-size: 12px; color: var(--muted); margin-left: 10px; }
+
+    /* Component showcase */
+    .component-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 12px;
+    }
+    .component-group { margin-bottom: 32px; }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 14px; font-weight: 700; font-size: 15px; border: 1px solid transparent; cursor: pointer; text-decoration: none; font-family: inherit; transition: transform .16s, box-shadow .16s; }
+    .btn--primary { background: linear-gradient(135deg, #4da3ff, #7cf0c5); color: #07101d; box-shadow: 0 4px 20px rgba(77,163,255,.35); }
+    .btn--ghost { border-color: rgba(255,255,255,.10); background: rgba(255,255,255,.05); color: var(--text); }
+
+    /* Chips */
+    .chip { border: 1px solid var(--line); background: rgba(255,255,255,.04); padding: 6px 13px; border-radius: 999px; color: var(--muted); font-weight: 500; font-size: 13px; display: inline-block; }
+    .chip--active { color: var(--text); border-color: rgba(77,163,255,.4); background: rgba(77,163,255,.10); }
+
+    /* Tagline pill */
+    .tagline-pill { display: inline-flex; align-items: center; gap: 8px; padding: 5px 14px 5px 9px; border-radius: 999px; border: 1px solid rgba(124,240,197,.28); background: rgba(124,240,197,.07); font-size: 13px; font-weight: 600; }
+    .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: #7cf0c5; animation: pulse 2.2s ease-in-out infinite; }
+    @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(124,240,197,.6)} 65%{box-shadow:0 0 0 7px rgba(124,240,197,0)} 100%{box-shadow:0 0 0 0 rgba(124,240,197,0)} }
+
+    /* Icon box */
+    .icon-box { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: rgba(124,240,197,.10); border: 1px solid rgba(124,240,197,.22); color: #7cf0c5; flex-shrink: 0; }
+
+    /* Steps */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; position: relative; }
+    .steps::before { content: ''; position: absolute; top: 19px; left: calc(100%/6); right: calc(100%/6); height: 1px; background: linear-gradient(90deg, transparent 0%, #4da3ff 30%, #7cf0c5 70%, transparent 100%); }
+    .step { padding-right: 16px; }
+    .step-num { width: 38px; height: 38px; border-radius: 11px; display: flex; align-items: center; justify-content: center; background: rgba(77,163,255,.13); border: 1px solid rgba(77,163,255,.32); color: #4da3ff; font-weight: 800; font-size: 14px; margin-bottom: 12px; position: relative; z-index: 1; }
+
+    /* Voice tone */
+    .rule { padding: 14px 16px; border-left: 3px solid var(--accent2); background: rgba(124,240,197,.05); border-radius: 0 10px 10px 0; margin-bottom: 10px; }
+    .rule strong { display: block; margin-bottom: 4px; }
+    .rule p { margin: 0; font-size: 13px; color: var(--muted); }
+
+    /* CSS vars block */
+    pre {
+      background: rgba(0,0,0,.4);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 20px;
+      overflow-x: auto;
+      font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      color: #c9d6f0;
+    }
+    .token-green { color: #7cf0c5; }
+    .token-blue  { color: #4da3ff; }
+    .token-gray  { color: #8d9ec6; }
+
+    /* Usage table */
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th { text-align: left; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 8px 12px; border-bottom: 1px solid var(--line); }
+    td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.06); vertical-align: top; color: var(--muted); }
+    td:first-child { color: var(--text); font-family: monospace; font-size: 12px; }
+
+    /* Eyebrow */
+    .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent2); margin: 0 0 10px; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ── HEADER ──────────────────────────────────────────────── -->
+  <div class="brand-header">
+    <p class="eyebrow">Brand Identity</p>
+    <h1>ClymbUp.ai Brand Guide</h1>
+    <p>Single source of truth for colors, typography, components, and voice. Use this across all ClymbUp projects.</p>
+    <p style="margin-top:8px;font-size:13px;color:#8d9ec6;">
+      Assets location: <code style="background:rgba(255,255,255,.06);padding:2px 7px;border-radius:6px;font-size:12px;">/var/www/clymbup.ai/assets/</code>
+    </p>
+  </div>
+
+  <!-- ── 1. LOGO ──────────────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">01 — Logo</p>
+
+    <div class="grid-3" style="margin-bottom:24px;">
+      <div>
+        <div class="logo-swatch logo-swatch--dark">
+          <img src="/assets/ClymbUpai_banner1_transparent.png" alt="ClymbUp.ai logo on dark">
+        </div>
+        <p class="swatch-label">Primary — dark bg</p>
+      </div>
+      <div>
+        <div class="logo-swatch logo-swatch--mid">
+          <img src="/assets/ClymbUpai_banner1_transparent.png" alt="ClymbUp.ai logo on mid bg">
+        </div>
+        <p class="swatch-label">On mid-dark bg</p>
+      </div>
+      <div>
+        <div class="logo-swatch logo-swatch--light">
+          <img src="/assets/ClymbUpai_banner1.png" alt="ClymbUp.ai banner PNG">
+        </div>
+        <p class="swatch-label">Original PNG (dark bg embedded)</p>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:24px;">
+      <div>
+        <div class="logo-swatch logo-swatch--dark" style="padding:28px;">
+          <img src="/assets/logo-mark.svg" alt="ClymbUp.ai icon mark" style="max-height:64px;">
+        </div>
+        <p class="swatch-label">Icon mark — for favicons, app icons</p>
+      </div>
+      <div class="card--flat" style="font-size:13px;color:var(--muted);">
+        <strong style="color:var(--text);display:block;margin-bottom:10px;">Logo files</strong>
+        <ul style="margin:0;padding-left:18px;line-height:2;">
+          <li><code>/assets/ClymbUpai_banner1_transparent.png</code> — banner wordmark (vector, transparent bg)</li>
+          <li><code>/assets/logo-mark.svg</code> — square icon mark (vector)</li>
+          <li><code>/assets/ClymbUpai_banner1.png</code> — original raster banner (RGBA)</li>
+          <li><code>/assets/ClymbUp_white_bg.png</code> — raster version (dark embedded bg)</li>
+        </ul>
+        <p style="margin-top:12px;"><strong style="color:var(--text);">Export PNG from SVG:</strong> Open logo.svg in any browser → right-click → Save image as…</p>
+      </div>
+    </div>
+
+    <div class="card--flat">
+      <strong style="display:block;margin-bottom:12px;">Usage rules</strong>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px;color:var(--muted);">
+        <div>
+          <p style="color:#7cf0c5;font-weight:700;margin:0 0 6px;">✓ Do</p>
+          <ul style="margin:0;padding-left:18px;line-height:2;">
+            <li>Use on dark backgrounds (#0b1220 or similar)</li>
+            <li>Maintain clear space equal to the height of the "C"</li>
+            <li>Use SVG for web — it scales perfectly</li>
+            <li>Use the icon mark alone at small sizes (&lt;120px wide)</li>
+          </ul>
+        </div>
+        <div>
+          <p style="color:#ff6b6b;font-weight:700;margin:0 0 6px;">✗ Don't</p>
+          <ul style="margin:0;padding-left:18px;line-height:2;">
+            <li>Stretch or distort the logo</li>
+            <li>Place on busy photo backgrounds without a dark overlay</li>
+            <li>Use on pure white without a dark card backing</li>
+            <li>Change the gradient colors</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 2. COLORS ─────────────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">02 — Color Palette</p>
+
+    <div class="grid-3" style="margin-bottom:24px;">
+      <div class="color-swatch">
+        <div class="color-block" style="background:#0b1220;"></div>
+        <div class="color-meta">
+          <span class="color-name">Background</span>
+          <span class="color-values">
+            <span>#0b1220</span>
+            <span>rgb(11, 18, 32)</span>
+            <span>var(--bg)</span>
+          </span>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background:#eaf0ff;"></div>
+        <div class="color-meta">
+          <span class="color-name">Text</span>
+          <span class="color-values">
+            <span>#eaf0ff</span>
+            <span>rgb(234, 240, 255)</span>
+            <span>var(--text)</span>
+          </span>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background:#8d9ec6;"></div>
+        <div class="color-meta">
+          <span class="color-name">Muted</span>
+          <span class="color-values">
+            <span>#8d9ec6</span>
+            <span>rgb(141, 158, 198)</span>
+            <span>var(--muted)</span>
+          </span>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background:#4da3ff;"></div>
+        <div class="color-meta">
+          <span class="color-name">Accent Blue</span>
+          <span class="color-values">
+            <span>#4da3ff</span>
+            <span>rgb(77, 163, 255)</span>
+            <span>var(--accent)</span>
+          </span>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background:#7cf0c5;"></div>
+        <div class="color-meta">
+          <span class="color-name">Accent Mint</span>
+          <span class="color-values">
+            <span>#7cf0c5</span>
+            <span>rgb(124, 240, 197)</span>
+            <span>var(--accent2)</span>
+          </span>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background:linear-gradient(135deg, #4da3ff, #7cf0c5);"></div>
+        <div class="color-meta">
+          <span class="color-name">Brand Gradient</span>
+          <span class="color-values">
+            <span>#4da3ff → #7cf0c5</span>
+            <span>135deg, blue to mint</span>
+            <span>Primary CTA use</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <p class="component-label">CSS Custom Properties</p>
+    <pre><span class="token-gray">:root {</span>
+  <span class="token-blue">--bg</span>:      <span class="token-green">#0b1220</span>;          <span class="token-gray">/* page background */</span>
+  <span class="token-blue">--text</span>:    <span class="token-green">#eaf0ff</span>;          <span class="token-gray">/* primary text */</span>
+  <span class="token-blue">--muted</span>:   <span class="token-green">#8d9ec6</span>;          <span class="token-gray">/* secondary text, captions */</span>
+  <span class="token-blue">--accent</span>:  <span class="token-green">#4da3ff</span>;          <span class="token-gray">/* blue — buttons, links, highlights */</span>
+  <span class="token-blue">--accent2</span>: <span class="token-green">#7cf0c5</span>;          <span class="token-gray">/* mint — success, gradient end, eyebrows */</span>
+  <span class="token-blue">--line</span>:    <span class="token-green">rgba(255,255,255,.10)</span>;  <span class="token-gray">/* borders, dividers */</span>
+  <span class="token-blue">--panel</span>:   <span class="token-green">rgba(255,255,255,.06)</span>;  <span class="token-gray">/* card background primary */</span>
+  <span class="token-blue">--panel2</span>:  <span class="token-green">rgba(255,255,255,.03)</span>;  <span class="token-gray">/* card background secondary (gradient end) */</span>
+  <span class="token-blue">--shadow</span>:  <span class="token-green">0 16px 48px rgba(0,0,0,.4)</span>;
+  <span class="token-blue">--radius</span>:  <span class="token-green">18px</span>;
+<span class="token-gray">}</span></pre>
+  </div>
+
+  <!-- ── 3. TYPOGRAPHY ─────────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">03 — Typography</p>
+
+    <div class="card" style="margin-bottom:20px;">
+      <p class="component-label">Typeface</p>
+      <div style="font-size:32px;font-weight:800;letter-spacing:-.5px;margin-bottom:4px;">Inter</div>
+      <p style="color:var(--muted);font-size:13px;margin:0;">
+        Google Fonts · Load via: <code style="background:rgba(255,255,255,.06);padding:2px 6px;border-radius:5px;font-size:12px;">fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap</code>
+      </p>
+    </div>
+
+    <div class="card" style="margin-bottom:20px;">
+      <p class="component-label">Weight Specimens</p>
+      <div class="weight-row"><span class="weight-label">400 Regular</span><span class="weight-sample" style="font-weight:400;">The quick brown fox</span></div>
+      <div class="weight-row"><span class="weight-label">500 Medium</span><span class="weight-sample" style="font-weight:500;">The quick brown fox</span></div>
+      <div class="weight-row"><span class="weight-label">600 SemiBold</span><span class="weight-sample" style="font-weight:600;">The quick brown fox</span></div>
+      <div class="weight-row"><span class="weight-label">700 Bold</span><span class="weight-sample" style="font-weight:700;">The quick brown fox</span></div>
+      <div class="weight-row"><span class="weight-label">800 ExtraBold</span><span class="weight-sample" style="font-weight:800;">The quick brown fox</span></div>
+      <div class="weight-row"><span class="weight-label">900 Black</span><span class="weight-sample" style="font-weight:900;">The quick brown fox</span></div>
+    </div>
+
+    <div class="card">
+      <p class="component-label">Type Scale</p>
+      <div class="type-row">
+        <div class="type-meta">--fs-3xl · 56px<br>weight 800<br>tracking -1px</div>
+        <div class="type-example" style="font-size:56px;font-weight:800;letter-spacing:-1px;line-height:1.05;">Hero</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">--fs-2xl · 44px<br>weight 800<br>tracking -.8px</div>
+        <div class="type-example" style="font-size:44px;font-weight:800;letter-spacing:-.8px;line-height:1.05;">Page title H1</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">--fs-xl · 32px<br>weight 700<br>tracking -.4px</div>
+        <div class="type-example" style="font-size:32px;font-weight:700;letter-spacing:-.4px;">Section heading H2</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">--fs-md · 17px<br>weight 600<br>tracking -.1px</div>
+        <div class="type-example" style="font-size:17px;font-weight:600;letter-spacing:-.1px;">Subsection heading H3</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">--fs-base · 15px<br>weight 400<br>1.55 line-height</div>
+        <div class="type-example" style="font-size:15px;">Body text. The foundation of all readable content on the site. Comfortable at 15px with 1.55 line height.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">--fs-sm · 13px<br>weight 400/500<br>muted color</div>
+        <div class="type-example" style="font-size:13px;color:var(--muted);">Small / supporting text. Used for captions, card subtitles, form helper text, and fine print.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">Eyebrow · 12px<br>weight 700<br>.12em tracking, caps</div>
+        <div class="type-example" style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);">Section label / eyebrow</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 4. SPACING ────────────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">04 — Spacing Scale</p>
+    <div class="card">
+      <div class="space-row"><span class="space-label">--gap-xs</span><div class="space-bar" style="width:6px;"></div><span class="space-value">6px</span></div>
+      <div class="space-row"><span class="space-label">--gap-sm</span><div class="space-bar" style="width:10px;"></div><span class="space-value">10px</span></div>
+      <div class="space-row"><span class="space-label">--gap-md</span><div class="space-bar" style="width:16px;"></div><span class="space-value">16px — default gap between cards</span></div>
+      <div class="space-row"><span class="space-label">--gap-lg</span><div class="space-bar" style="width:28px;"></div><span class="space-value">28px — section internal padding</span></div>
+      <div class="space-row"><span class="space-label">--gap-xl</span><div class="space-bar" style="width:48px;"></div><span class="space-value">48px — between major page sections</span></div>
+    </div>
+  </div>
+
+  <!-- ── 5. COMPONENTS ─────────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">05 — Components</p>
+
+    <!-- Buttons -->
+    <div class="component-group">
+      <p class="component-label">Buttons</p>
+      <div class="card--flat" style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+        <a href="#" class="btn btn--primary">Book a call</a>
+        <a href="#" class="btn btn--ghost">Learn more</a>
+        <a href="#" class="btn btn--ghost" style="padding:8px 16px;font-size:13px;border-radius:10px;">Small ghost</a>
+      </div>
+    </div>
+
+    <!-- Nav chips -->
+    <div class="component-group">
+      <p class="component-label">Navigation Chips</p>
+      <div class="card--flat" style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="#" class="chip chip--active">Home</a>
+        <a href="#" class="chip">About</a>
+        <a href="#" class="chip">Services</a>
+        <a href="#" class="chip">Contact</a>
+      </div>
+    </div>
+
+    <!-- Tagline pill -->
+    <div class="component-group">
+      <p class="component-label">Tagline Pill</p>
+      <div class="card--flat">
+        <span class="tagline-pill"><span class="pulse-dot"></span>AI telephony for home service businesses</span>
+      </div>
+    </div>
+
+    <!-- Icon boxes -->
+    <div class="component-group">
+      <p class="component-label">Icon Box</p>
+      <div class="card--flat" style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.21 3.5 2 2 0 0 1 3.22 1.32h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="icon-box" style="background:rgba(77,163,255,.10);border-color:rgba(77,163,255,.22);color:#4da3ff;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        </div>
+        <div class="icon-box" style="background:rgba(255,200,100,.10);border-color:rgba(255,200,100,.22);color:#ffc864;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="component-group">
+      <p class="component-label">Card Variants</p>
+      <div class="grid-3">
+        <div class="card" style="padding:20px;">
+          <p style="font-size:11px;color:var(--muted);margin:0 0 6px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;">.card</p>
+          <p style="margin:0;font-size:13px;color:var(--muted);">Primary card — gradient background, shadow</p>
+        </div>
+        <div class="card--flat" style="padding:20px;">
+          <p style="font-size:11px;color:var(--muted);margin:0 0 6px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;">.card--flat</p>
+          <p style="margin:0;font-size:13px;color:var(--muted);">Nested card — no shadow, lighter bg</p>
+        </div>
+        <div class="card--hero" style="padding:20px;">
+          <p style="font-size:11px;color:var(--accent2);margin:0 0 6px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;">.card--hero</p>
+          <p style="margin:0;font-size:13px;color:var(--muted);">CTA card — blue accent border, glow</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Steps -->
+    <div class="component-group">
+      <p class="component-label">Steps / Timeline</p>
+      <div class="card">
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h3 style="margin:0 0 4px;font-size:15px;font-weight:600;">First step</h3>
+            <p style="margin:0;font-size:13px;color:var(--muted);">Description of what happens here.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <h3 style="margin:0 0 4px;font-size:15px;font-weight:600;">Second step</h3>
+            <p style="margin:0;font-size:13px;color:var(--muted);">Description of what happens here.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <h3 style="margin:0 0 4px;font-size:15px;font-weight:600;">Third step</h3>
+            <p style="margin:0;font-size:13px;color:var(--muted);">Description of what happens here.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 6. VOICE & TONE ───────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">06 — Voice &amp; Tone</p>
+    <div class="rule"><strong>Direct over corporate.</strong><p>Say "Stop losing leads to voicemail" not "Optimize your inbound lead capture pipeline." Small business owners speak plainly. So do we.</p></div>
+    <div class="rule"><strong>Small business context, always.</strong><p>The audience is owner-operators of home service companies — HVAC, plumbing, landscaping, pest control. Every benefit should be relatable to their day, not to enterprise SaaS buyers.</p></div>
+    <div class="rule"><strong>Numbers over adjectives.</strong><p>Not "significantly faster response times" — say "answered in under 2 seconds, 24/7." Specificity builds trust.</p></div>
+    <div class="rule"><strong>No AI buzzwords.</strong><p>Avoid "leveraging cutting-edge AI," "next-gen," "revolutionary," "seamless." These signal generic content. Use functional descriptions instead.</p></div>
+    <div class="rule"><strong>First person is Kevin.</strong><p>On the About page and in emails, the voice is Kevin's — a real person, not a brand committee. Use "I" and "we" deliberately.</p></div>
+    <div class="rule"><strong>Calls to action are specific.</strong><p>"Book a 15-minute strategy call" beats "Get started." "Call our AI agent — (760) 565-5905" beats "Try a demo." Name the action and the duration or destination.</p></div>
+  </div>
+
+  <!-- ── 7. USAGE NOTES ────────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">07 — Usage Notes</p>
+    <div class="card">
+      <p style="font-weight:700;margin:0 0 14px;">Using this brand in a new project</p>
+      <table>
+        <tr><th>What you need</th><th>Where to find it</th></tr>
+        <tr><td>Shared CSS</td><td>Copy <code>/assets/cu-base.css</code> to your project and link it</td></tr>
+        <tr><td>Scroll animations</td><td>Copy <code>/assets/cu-animate.js</code>, link with <code>defer</code>, add <code>class="reveal"</code> to elements</td></tr>
+        <tr><td>SVG logo (banner)</td><td><code>/assets/ClymbUpai_banner1_transparent.png</code> — transparent bg, any size</td></tr>
+        <tr><td>SVG icon mark</td><td><code>/assets/logo-mark.svg</code> — square format, for favicons/app icons</td></tr>
+        <tr><td>PNG logo (raster)</td><td>Open logo.svg in browser → right-click → Save image as PNG</td></tr>
+        <tr><td>CSS variables only</td><td>Copy the <code>:root { }</code> block from this page or from cu-base.css</td></tr>
+        <tr><td>Font</td><td>Add Google Fonts link for Inter 400;500;600;700;800;900</td></tr>
+      </table>
+      <p style="margin-top:16px;font-size:13px;color:var(--muted);">
+        All brand assets live at <code style="background:rgba(255,255,255,.06);padding:2px 7px;border-radius:6px;">/var/www/clymbup.ai/assets/</code> on the production server and <code style="background:rgba(255,255,255,.06);padding:2px 7px;border-radius:6px;">~/clymbup.ai-dev/assets/</code> locally.
+      </p>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);">
+    ClymbUp.ai Brand Guide · Last updated <span id="brandYear"></span> · kevin@clymbup.ai
+  </div>
+</div>
+<script>document.getElementById('brandYear').textContent = new Date().getFullYear();</script>
+</body>
+</html>

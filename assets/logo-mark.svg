@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-label="ClymbUp.ai icon mark">
+  <defs>
+    <linearGradient id="markGrad" x1="10%" y1="90%" x2="90%" y2="10%">
+      <stop offset="0%"   stop-color="#2563eb"/>
+      <stop offset="50%"  stop-color="#4da3ff"/>
+      <stop offset="100%" stop-color="#7cf0c5"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#0f1a2e"/>
+    </linearGradient>
+    <filter id="glow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="1.8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <clipPath id="roundedClip">
+      <rect width="80" height="80" rx="18" ry="18"/>
+    </clipPath>
+  </defs>
+
+  <!-- Rounded square background -->
+  <rect width="80" height="80" rx="18" ry="18" fill="url(#bgGrad)"/>
+
+  <!-- Subtle inner border -->
+  <rect width="80" height="80" rx="18" ry="18" fill="none" stroke="rgba(77,163,255,.25)" stroke-width="1"/>
+
+  <!-- "C" letterform — bold white -->
+  <text
+    x="12"
+    y="58"
+    font-family="Inter, ui-sans-serif, system-ui, -apple-system, Helvetica, Arial, sans-serif"
+    font-size="52"
+    font-weight="800"
+    letter-spacing="-2"
+    fill="#eaf0ff"
+    clip-path="url(#roundedClip)"
+  >C</text>
+
+  <!-- Swoosh arc beneath the C -->
+  <path
+    d="M 10 62 Q 36 74 58 58"
+    stroke="url(#markGrad)"
+    stroke-width="2.8"
+    fill="none"
+    stroke-linecap="round"
+    filter="url(#glow)"
+  />
+
+  <!-- Arrow — rising from swoosh end -->
+  <path
+    d="M 58 58 L 72 28"
+    stroke="url(#markGrad)"
+    stroke-width="2.8"
+    fill="none"
+    stroke-linecap="round"
+    filter="url(#glow)"
+  />
+
+  <!-- Arrowhead -->
+  <polygon
+    points="72,20 80,34 63,32"
+    fill="url(#markGrad)"
+    filter="url(#glow)"
+    clip-path="url(#roundedClip)"
+  />
+</svg>

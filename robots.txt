@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /_debug/
+Disallow: /assets/brand.html
+Disallow: /*.json$
+Disallow: /*.md$
+Disallow: /*.sh$
+Disallow: /*.save$
+
+Sitemap: https://clymbup.ai/sitemap.xml
