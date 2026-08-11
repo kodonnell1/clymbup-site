@@ -1,0 +1,5 @@
+*.bak
+*.save
+*.save.*
+internal/
+_debug/
