@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Complete System: 7 AI Employees for Home Service Businesses | ClymbUp.ai</title>
+  <meta name="description" content="Most agencies fix one problem. ClymbUp builds a complete system of 7 AI employees that work together to get you more customers, answer every call, and grow your revenue.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://clymbup.ai/system/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://clymbup.ai/" },
+      { "@type": "ListItem", "position": 2, "name": "The Complete System", "item": "https://clymbup.ai/system/" }
+    ]
+  }
+  </script>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clymbup.ai/system/">
+  <meta property="og:title" content="The Complete System: 7 AI Employees for Home Service Businesses | ClymbUp.ai">
+  <meta property="og:description" content="Most agencies fix one problem. ClymbUp builds a complete system of 7 AI employees that work together to get you more customers, answer every call, and grow your revenue.">
+  <meta property="og:image" content="https://clymbup.ai/assets/ClymbUpai_banner1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Clymbup16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Clymbup32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/cu-base.css">
+  <script src="/assets/cu-animate.js" defer></script>
+  <style>
+    .employee-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 32px;
+      background: rgba(255,255,255,.025);
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (max-width: 600px) {
+      .employee-card { grid-template-columns: 1fr; gap: 12px; padding: 24px; }
+    }
+    .employee-num {
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--accent);
+      opacity: 0.35;
+      padding-top: 4px;
+      letter-spacing: -2px;
+    }
+    .employee-role {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .employee-card h2 {
+      font-size: 26px;
+      margin: 0 0 6px;
+      line-height: 1.2;
+    }
+    .employee-tagline {
+      font-size: 14px;
+      color: var(--muted);
+      font-style: italic;
+      margin: 0 0 20px;
+      border-left: 3px solid var(--accent);
+      padding-left: 12px;
+    }
+    .employee-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 560px) {
+      .employee-cols { grid-template-columns: 1fr; }
+    }
+    .col-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 8px;
+    }
+    .col-label.problem { color: #e07070; }
+    .col-label.solution { color: var(--accent2); }
+    .employee-cols ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .employee-cols ul li {
+      font-size: 13px;
+      color: var(--muted);
+      padding-left: 14px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .employee-cols ul li::before { content: "·"; position: absolute; left: 0; color: var(--muted); }
+    .employee-cols .solution-list li::before { content: "✓"; color: var(--accent2); font-size: 11px; top: 1px; }
+    .outcome-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .outcome-chip {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      color: var(--text);
+    }
+    .badge-core {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: rgba(99,200,130,.12);
+      border: 1px solid rgba(99,200,130,.3);
+      color: #63c882;
+      margin-bottom: 10px;
+    }
+    .badge-soon {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.12);
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .system-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+      padding-left: 28px;
+    }
+    .system-steps::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 24px;
+      bottom: 24px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      opacity: 0.2;
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img src="/assets/ClymbUpai_transparent.png" alt="ClymbUp.ai" class="brand-logo-img"
+         onerror="this.src='/assets/ClymbUpai_banner1_transparent.png'">
+    <nav>
+      <a class="chip" href="/">Home</a>
+      <a class="chip" href="/services/">Services</a>
+      <a class="chip" href="/about/">About</a>
+      <a class="chip" href="/contact/">Contact</a>
+      <a class="chip" href="/blog/">Blog</a>
+    </nav>
+  </header>
+
+  <main class="stack" style="margin-top:32px;">
+
+    <!-- HERO -->
+    <section class="card card--hero text-center reveal">
+      <p class="eyebrow">The Complete System</p>
+      <h1 style="font-size:36px;margin-bottom:12px;">
+        7 AI Employees.<br>One complete system.
+      </h1>
+      <p class="lead text-center" style="margin:0 auto 24px;max-width:560px;">
+        Most agencies sell you one patch for a business with a dozen holes in it. ClymbUp builds the whole system &mdash; seven AI employees that work together so every lead gets captured, every call gets answered, and every customer is followed up with.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn--primary" href="/audit/">Book Your Automation Audit &rarr;</a>
+        <a class="btn btn--ghost" href="/services/">See our services</a>
+      </div>
+    </section>
+
+    <!-- THE ANALOGY -->
+    <section class="card reveal">
+      <p class="eyebrow">Why one tool isn&apos;t enough</p>
+      <h2>A bucket with one patch still leaks.</h2>
+      <p style="font-size:15px;line-height:1.7;max-width:640px;margin-bottom:0;">
+        You can run ads, hire a great team, and do excellent work &mdash; and still lose customers if your website is slow, calls go to voicemail, leads never get followed up on, and nobody asks for reviews. Each of those is a hole. Plugging one while the others stay open means the business still empties out before you see the results.
+      </p>
+      <p style="font-size:15px;line-height:1.7;max-width:640px;margin:16px 0 0;">
+        The sequence below fixes every hole, in the right order. Each step makes the next one more effective &mdash; and running paid ads is the last step, not the first.
+      </p>
+    </section>
+
+    <!-- EMPLOYEE 1 -->
+    <div class="employee-card reveal">
+      <div class="employee-num">01</div>
+      <div>
+        <p class="employee-role">AI Employee #1 &middot; The Digital Storefront</p>
+        <h2>The AI Website</h2>
+        <p class="employee-tagline">&ldquo;Before you hire a single AI employee, you have to fix the front door of the business: the website.&rdquo;</p>
+        <div class="employee-cols">
+          <div>
+            <p class="col-label problem">The Problem</p>
+            <ul>
+              <li>53% of visitors leave if a site takes longer than 3 seconds to load</li>
+              <li>60%+ of Google searches happen on mobile, but most local sites are built for desktop</li>
+              <li>70% of small-business websites have no clear offer or easy way to capture a lead</li>
+            </ul>
+          </div>
+          <div>
+            <p class="col-label solution">Our Solution</p>
+            <ul class="solution-list">
+              <li>Mobile-first build optimized for phones, not desktops</li>
+              <li>Loads in under one second</li>
+              <li>Clear offer and multi-step lead form above the fold</li>
+              <li>Built to convert, not just look good</li>
+            </ul>
+          </div>
+        </div>
+        <div class="outcome-chips">
+          <span class="outcome-chip">Lower bounce rate</span>
+          <span class="outcome-chip">More leads</span>
+          <span class="outcome-chip">Higher conversion</span>
+          <span class="outcome-chip">Better ROI on every marketing dollar</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMPLOYEE 2 -->
+    <div class="employee-card reveal">
+      <div class="employee-num">02</div>
+      <div>
+        <p class="employee-role">AI Employee #2 &middot; The Revenue Recovery Specialist</p>
+        <h2>Database Reactivation AI</h2>
+        <p class="employee-tagline">&ldquo;Most businesses are sitting on thousands of dollars in forgotten leads.&rdquo;</p>
+        <div class="employee-cols">
+          <div>
+            <p class="col-label problem">The Problem</p>
+            <ul>
+              <li>Sales reps typically stop following up after 1.3 attempts</li>
+              <li>93% of leads that convert are reached on the 6th attempt</li>
+              <li>Old leads and past customers are rarely contacted again</li>
+            </ul>
+          </div>
+          <div>
+            <p class="col-label solution">Our Solution</p>
+            <ul class="solution-list">
+              <li>AI automatically contacts every old lead via SMS</li>
+              <li>Sends personalized offers, not generic blasts</li>
+              <li>Handles the back-and-forth conversation</li>
+              <li>Books appointments automatically</li>
+            </ul>
+          </div>
+        </div>
+        <div class="outcome-chips">
+          <span class="outcome-chip">Immediate revenue</span>
+          <span class="outcome-chip">Reactivates warm leads</span>
+          <span class="outcome-chip">No ad spend required</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMPLOYEE 3 -->
+    <div class="employee-card reveal">
+      <div class="employee-num">03</div>
+      <div>
+        <p class="employee-role">AI Employee #3 &middot; The Reputation Manager</p>
+        <h2>Reviews + Referrals AI</h2>
+        <p class="employee-tagline">&ldquo;Trust is the biggest deciding factor in local business.&rdquo;</p>
+        <div class="employee-cols">
+          <div>
+            <p class="col-label problem">The Problem</p>
+            <ul>
+              <li>98% of consumers check reviews before choosing a local business</li>
+              <li>Only 11% of businesses consistently ask for reviews</li>
+              <li>Most businesses never run a structured referral program</li>
+            </ul>
+          </div>
+          <div>
+            <p class="col-label solution">Our Solution</p>
+            <ul class="solution-list">
+              <li>Automated review requests via SMS after every job</li>
+              <li>Direct link to your Google review page &mdash; no hunting required</li>
+              <li>Referral follow-up campaigns that turn happy customers into new leads</li>
+              <li>Incentive-based, compliant with platform terms</li>
+            </ul>
+          </div>
+        </div>
+        <div class="outcome-chips">
+          <span class="outcome-chip">More Google reviews</span>
+          <span class="outcome-chip">Higher Maps ranking</span>
+          <span class="outcome-chip">More referrals</span>
+          <span class="outcome-chip">Increased trust</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMPLOYEE 4 -->
+    <div class="employee-card reveal">
+      <div class="employee-num">04</div>
+      <div>
+        <p class="employee-role">AI Employee #4 &middot; The Lead Nurturer</p>
+        <h2>Website Lead Manager</h2>
+        <p class="employee-tagline">&ldquo;Speed to lead wins customers.&rdquo;</p>
+        <div class="employee-cols">
+          <div>
+            <p class="col-label problem">The Problem</p>
+            <ul>
+              <li>The average business responds to website leads 42&ndash;47 hours later</li>
+              <li>The first company to respond wins the job 78% of the time</li>
+              <li>Most leads submitted through contact forms are never followed up with</li>
+            </ul>
+          </div>
+          <div>
+            <p class="col-label solution">Our Solution</p>
+            <ul class="solution-list">
+              <li>Instant AI response to every website form submission</li>
+              <li>Automated conversation that qualifies and warms the lead</li>
+              <li>Books appointments directly into your calendar</li>
+              <li>Follow-up reminders until they convert or opt out</li>
+            </ul>
+          </div>
+        </div>
+        <div class="outcome-chips">
+          <span class="outcome-chip">Faster responses</span>
+          <span class="outcome-chip">More booked appointments</span>
+          <span class="outcome-chip">Higher conversion rates</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMPLOYEE 5 — CORE -->
+    <div class="employee-card reveal">
+      <div class="employee-num">05</div>
+      <div>
+        <span class="badge-core">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Core service &mdash; available now
+        </span>
+        <p class="employee-role">AI Employee #5 &middot; The AI Receptionist</p>
+        <h2>Missed Call Text-Back AI</h2>
+        <p class="employee-tagline">&ldquo;Every missed call is a missed customer.&rdquo;</p>
+        <div class="employee-cols">
+          <div>
+            <p class="col-label problem">The Problem</p>
+            <ul>
+              <li>62% of calls to local businesses go unanswered</li>
+              <li>Some businesses miss 90%+ of incoming calls</li>
+              <li>Callers who don&apos;t get answered rarely call back &mdash; they call the next company</li>
+            </ul>
+          </div>
+          <div>
+            <p class="col-label solution">Our Solution</p>
+            <ul class="solution-list">
+              <li>24/7 AI voice agent answers every call on the first ring</li>
+              <li>Qualifies leads, captures job details, flags emergencies</li>
+              <li>Books directly into your calendar or sends a structured summary to your team</li>
+              <li>Handles rescheduling and follow-up automatically</li>
+            </ul>
+          </div>
+        </div>
+        <div class="outcome-chips">
+          <span class="outcome-chip">Zero missed calls</span>
+          <span class="outcome-chip">More booked jobs</span>
+          <span class="outcome-chip">Better customer experience</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMPLOYEE 6 — COMING SOON -->
+    <div class="employee-card reveal">
+      <div class="employee-num">06</div>
+      <div>
+        <span class="badge-soon">
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Coming soon
+        </span>
+        <p class="employee-role">AI Employee #6 &middot; The Sales Coach</p>
+        <h2>AI Closers Coach</h2>
+        <p class="employee-tagline">&ldquo;More leads don&apos;t matter if nobody can close them.&rdquo;</p>
+        <div class="employee-cols">
+          <div>
+            <p class="col-label problem">The Problem</p>
+            <ul>
+              <li>70% of local business employees receive no formal sales training</li>
+              <li>No scripts, no role-playing, no call reviews</li>
+              <li>Teams get better leads but convert fewer of them</li>
+            </ul>
+          </div>
+          <div>
+            <p class="col-label solution">Our Solution</p>
+            <ul class="solution-list">
+              <li>AI reviews recorded sales calls and consultations</li>
+              <li>Scores each conversation against your sales process</li>
+              <li>Gives specific coaching: what worked, what to change</li>
+              <li>Role-play mode so your team can practice before real calls</li>
+            </ul>
+          </div>
+        </div>
+        <div class="outcome-chips">
+          <span class="outcome-chip">Higher close rates</span>
+          <span class="outcome-chip">Better-trained staff</span>
+          <span class="outcome-chip">Consistent sales process</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMPLOYEE 7 — COMING SOON -->
+    <div class="employee-card reveal">
+      <div class="employee-num">07</div>
+      <div>
+        <span class="badge-soon">
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Coming soon
+        </span>
+        <p class="employee-role">AI Employee #7 &middot; The Growth Engine</p>
+        <h2>AI Marketing Director</h2>
+        <p class="employee-tagline">&ldquo;Advertising should be the final step, not the first.&rdquo;</p>
+        <div class="employee-cols">
+          <div>
+            <p class="col-label problem">The Problem</p>
+            <ul>
+              <li>Running ads before fixing the other six holes wastes money</li>
+              <li>A slow website, no follow-up, and missed calls turn ad spend into a loss</li>
+              <li>Most businesses start with ads because it feels like growth &mdash; it isn&apos;t</li>
+            </ul>
+          </div>
+          <div>
+            <p class="col-label solution">Our Solution</p>
+            <ul class="solution-list">
+              <li>Google Local Services Ads setup and management</li>
+              <li>Google Business Profile optimization</li>
+              <li>AI-assisted targeting, copy, and budget decisions</li>
+              <li>Only deployed once employees 1&ndash;6 are working</li>
+            </ul>
+          </div>
+        </div>
+        <div class="outcome-chips">
+          <span class="outcome-chip">Lower acquisition cost</span>
+          <span class="outcome-chip">Higher ROI</span>
+          <span class="outcome-chip">Predictable growth</span>
+          <span class="outcome-chip">Long-term scalability</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="card card--hero text-center reveal">
+      <p class="eyebrow">Start the system</p>
+      <h2>You don&apos;t have to build all seven at once.</h2>
+      <p class="lead text-center" style="margin:8px auto 22px;max-width:520px;">
+        The Automation Audit shows you exactly which holes are costing you the most right now and which AI employee to deploy first. Two calls. One written report. Money-back guarantee.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn--primary" href="/audit/">Book Your Automation Audit &rarr;</a>
+        <a class="btn btn--ghost" href="/contact/">Talk to us first</a>
+      </div>
+      <p class="fine-print" style="margin-top:16px;">$999 flat rate &middot; Two calls &middot; Full written report &middot; Money-back guarantee</p>
+    </section>
+
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">ClymbUp.ai</div>
+          <p class="footer-tagline">AI receptionist &amp; automation for home service businesses.</p>
+          <p class="fine-print">68155 Vega Rd, Cathedral City CA 92234</p>
+        </div>
+        <div>
+          <p class="footer-col-title">Contact</p>
+          <div class="footer-links">
+            <a href="tel:+17605655905">(760) 565-5905</a>
+            <a href="mailto:kevin@clymbup.ai" style="color:var(--accent2);">kevin@clymbup.ai</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-col-title">Quick Links</p>
+          <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/services/">Services</a>
+            <a href="/blog/">Blog</a>
+            <a href="/contact/">Contact</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-col-title">Industries</p>
+          <div class="footer-links">
+            <a href="/plumbers/">Plumbers</a>
+            <a href="/hvac/">HVAC</a>
+            <a href="/electricians/">Electricians</a>
+            <a href="/car-dealership/">Car Dealerships</a>
+            <a href="/carpet-cleaning/">Carpet Cleaning</a>
+            <a href="/garage-tech/">Garage Tech</a>
+            <a href="/junk-hauling/">Junk Hauling</a>
+            <a href="/landscaping/">Landscaping</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="y"></span> Kevin O&apos;Donnell DBA ClymbUp. All rights reserved.</span>
+      </div>
+    </footer>
+
+  </main>
+</div>
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
