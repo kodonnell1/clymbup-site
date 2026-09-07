@@ -48,7 +48,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/Clymbup32.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/cu-base.css">
   <script src="/assets/cu-animate.js" defer></script>
   <style>
@@ -57,7 +57,7 @@
       border: 1px solid var(--line);
       border-radius: 14px;
       overflow: hidden;
-      background: linear-gradient(135deg, rgba(77,163,255,.07), rgba(124,240,197,.05));
+      background: var(--panel2);
       margin: 26px 0 30px;
     }
     .audit-stat-item {
@@ -107,11 +107,12 @@
     .benefit-row { display: flex; gap: 14px; align-items: flex-start; }
     .benefit-icon {
       flex-shrink: 0;
-      width: 36px; height: 36px;
-      border-radius: 10px;
+      width: 34px; height: 34px;
+      border-radius: 6px;
       display: flex; align-items: center; justify-content: center;
-      background: rgba(77,163,255,.10);
-      border: 1px solid rgba(77,163,255,.22);
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--muted);
     }
 
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -120,29 +121,30 @@
     .form-btn {
       width: 100%; padding: 14px; border-radius: 14px; border: none;
       font-family: inherit; font-weight: 700; font-size: 15px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      background: var(--accent2);
       color: #07101d; cursor: pointer;
       transition: transform .16s, box-shadow .16s;
-      box-shadow: 0 4px 20px rgba(77,163,255,.35);
+      box-shadow: 0 4px 16px rgba(124,240,197,.28);
     }
-    .form-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 30px rgba(77,163,255,.45); }
+    .form-btn:hover { transform: translateY(-1px); background: #8ff4cd; }
     .form-btn:active { transform: none; }
     form a { color: var(--accent2); text-decoration: underline; }
 
     .popup-overlay {
       display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,.6); backdrop-filter: blur(4px);
+      background: rgba(0,0,0,.6);
       z-index: 999; align-items: center; justify-content: center;
     }
     .popup-overlay.active { display: flex; }
     .popup-box {
-      background: linear-gradient(160deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
-      border: 1px solid rgba(124,240,197,.3);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent2);
       border-radius: var(--radius); padding: 36px 32px;
       text-align: center; max-width: 380px; width: 90%;
-      box-shadow: 0 24px 64px rgba(0,0,0,.6);
+      box-shadow: var(--shadow);
     }
-    .popup-box h2 { margin: 0 0 10px; color: var(--accent2); font-size: 26px; }
+    .popup-box h2 { margin: 0 0 10px; color: var(--text); font-size: 24px; }
     .popup-box p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
   </style>
 </head>
