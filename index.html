@@ -48,7 +48,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/Clymbup32.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Big+Shoulders+Display:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/cu-base.css">
   <script src="/assets/cu-animate.js" defer></script>
 </head>
@@ -68,11 +68,13 @@
     </nav>
   </header>
 
+  <div class="stripe-divider"></div>
+
   <main class="stack" style="margin-top:32px;">
 
     <!-- ── HERO ── -->
     <section class="card card--hero reveal" style="text-align:center;">
-      <p class="eyebrow">Your IT, Business Informatics &amp; AI Department</p>
+      <span class="eyebrow-badge">Your IT, Business Informatics &amp; AI Department</span>
       <h1>For local service and appointment-based businesses.</h1>
       <p class="lead text-center" style="margin:0 auto;max-width:580px;">
         HVAC, plumbing, electrical, landscaping, healthcare and dental practices, salons, auto repair. You're right to feel like you're falling behind on new technology. That's basically why we exist: we take the parts of running your business you hate dealing with and automate them, so you can spend more of your day on the parts you actually care about.
@@ -105,33 +107,33 @@
     </section>
 
     <!-- ── FLAGSHIP: MISSED CALLS ── -->
-    <section class="card reveal" id="problems">
-      <p class="eyebrow">The most common leak we find</p>
+    <div class="band band--cream reveal" id="problems">
+      <span class="eyebrow-badge">The most common leak we find</span>
       <h2>Every missed call is a missed customer.</h2>
-      <img src="/assets/photos/plumber-under-sink.jpg" alt="A plumber working under a sink, phone in his back pocket" style="width:100%;height:auto;max-height:360px;object-fit:cover;border-radius:var(--radius);border:1px solid var(--line);margin:18px 0 4px;">
-      <div class="grid-3" style="margin-top:20px;">
-        <div class="card--flat reveal stagger-1">
+      <img src="/assets/photos/plumber-under-sink.jpg" alt="A plumber working under a sink, phone in his back pocket" style="width:100%;height:auto;max-height:360px;object-fit:cover;border-radius:6px;border:4px solid var(--ink);margin:18px 0 24px;">
+      <div class="grid-3">
+        <div class="card--flat reveal stagger-1" style="background:rgba(18,16,12,.05);border-color:rgba(18,16,12,.1);">
           <h3>Most calls go unanswered</h3>
-          <p class="text-muted" style="font-size:14px;margin:0;">62% is the average. Some businesses miss 90% or more of the calls that come in. Every one was a customer who called you first.</p>
+          <p style="font-size:14px;margin:0;color:#4a453c;">62% is the average. Some businesses miss 90% or more of the calls that come in. Every one was a customer who called you first.</p>
         </div>
-        <div class="card--flat reveal stagger-2">
+        <div class="card--flat reveal stagger-2" style="background:rgba(18,16,12,.05);border-color:rgba(18,16,12,.1);">
           <h3>If you don't pick up, they just call the next one</h3>
-          <p class="text-muted" style="font-size:14px;margin:0;">Almost nobody leaves a voicemail and waits anymore. They call the next business on the list instead.</p>
+          <p style="font-size:14px;margin:0;color:#4a453c;">Almost nobody leaves a voicemail and waits anymore. They call the next business on the list instead.</p>
         </div>
-        <div class="card--flat reveal stagger-3">
+        <div class="card--flat reveal stagger-3" style="background:rgba(18,16,12,.05);border-color:rgba(18,16,12,.1);">
           <h3>It's worst when you're busiest</h3>
-          <p class="text-muted" style="font-size:14px;margin:0;">You're on a job, on another line, or it's 8pm on a Saturday. Those are exactly the moments people are calling.</p>
+          <p style="font-size:14px;margin:0;color:#4a453c;">You're on a job, on another line, or it's 8pm on a Saturday. Those are exactly the moments people are calling.</p>
         </div>
       </div>
-      <p class="lead" style="margin:20px 0 6px;">
+      <p class="lead" style="margin:20px 0 6px;color:#4a453c;">
         We make sure no call goes unanswered. Every call gets picked up live, 24/7. If one somehow still slips through, the caller gets a text back right away instead of your voicemail.
       </p>
-      <a class="btn btn--ghost" href="/services/">See how it works &rarr;</a>
-    </section>
+      <a class="btn btn--ghost" href="/services/" style="border-color:rgba(18,16,12,.25);color:var(--ink);">See how it works &rarr;</a>
+    </div>
 
     <!-- ── FLAGSHIP: REPUTATION MANAGEMENT ── -->
     <section class="card reveal">
-      <p class="eyebrow">Happening whether you're watching or not</p>
+      <span class="eyebrow-badge">Happening whether you're watching or not</span>
       <h2>Your reputation, watched, so you don't have to check.</h2>
       <div class="grid-3" style="margin-top:20px;">
         <div class="card--flat reveal stagger-1">
