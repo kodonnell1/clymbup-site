@@ -1,5 +1,6 @@
 User-agent: *
 Disallow: /_debug/
+Disallow: /proposals/
 Disallow: /assets/brand.html
 Disallow: /*.json$
 Disallow: /*.md$
