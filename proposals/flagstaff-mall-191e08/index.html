@@ -91,6 +91,12 @@
   .contact .lines span { user-select: all; }
   .fine { font-size: 13px; color: var(--muted); max-width: 70ch; }
   hr { border: none; border-top: 1px solid var(--rule); margin: 34px 0 0; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .tabs a { color: var(--brand-ink); text-decoration: none; font-size: 14px; font-weight: 600; padding: 6px 14px; border-radius: 999px; border: 1px solid #3c5a64; }
+  .tabs a[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: #12100c; }
+  .tabs a:hover, .tabs a:focus-visible { border-color: var(--accent); }
+  .ahead { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 20px; display: grid; gap: 10px; }
+  .ahead a { color: var(--ink); font-weight: 700; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 3px; }
 </style>
 </head>
 <body>
@@ -103,6 +109,7 @@
       <span>Prepared by <b>Kevin O'Donnell, ClymbUp</b></span>
       <span><b>October 2026</b></span>
     </div>
+    <nav class="tabs" aria-label="Proposal pages"><a href="./" aria-current="page">Proposal</a><a href="ideas/">Ideas for later</a></nav>
   </div>
 </header>
 
@@ -167,7 +174,7 @@
         <h3>Setup</h3>
         <ul class="checks">
           <li>The same look and content, rebuilt to load fast on phones</li>
-          <li>Staff logins to add stores, events and news yourselves</li>
+          <li>A simple admin page for the three things you update most: stores, events and news</li>
           <li>Redirects from every old address, so Google rankings and saved links keep working</li>
           <li>A short training call for your team</li>
           <li>Switch-over with no downtime</li>
@@ -184,6 +191,12 @@
         </ul>
       </div>
     </div>
+  </section>
+
+  <section>
+    <h2><small>Day to day</small>Keeping the site current</h2>
+    <p>Your team keeps the store directory, events and news up to date today, and you'll keep doing that, with less effort. The new admin page is built around those three jobs: add or close a store, post an event, publish news, change hours. It works on a phone as well as a desktop, and changes show on the site right away.</p>
+    <p>When you'd rather not log in, email or call and we'll make the change for you. Up to 2 hours of edits a month are included.</p>
   </section>
 
   <section>
@@ -204,6 +217,14 @@
       <li>Names of staff who should have logins</li>
     </ul>
     <p class="fine">Your domain and content stay in your name. If you ever leave, we hand everything over.</p>
+  </section>
+
+  <section>
+    <div class="ahead">
+      <h2><small>Looking ahead</small>Ideas for later</h2>
+      <p>A shopper assistant that answers questions by text and chat around the clock, text-in updates for your staff, and other features malls are starting to offer. None of it is part of this quote.</p>
+      <p><a href="ideas/">See the ideas for later &rarr;</a></p>
+    </div>
   </section>
 
   <section>

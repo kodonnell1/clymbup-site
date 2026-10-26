@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Flagstaff Mall Website Ideas</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/Clymbup32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Work+Sans:wght@400;500;600;700&display=swap">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; }
+  :root {
+    --paper: #fbf8f2;
+    --panel: #f3ede1;
+    --ink: #12100c;
+    --muted: #5b6b69;
+    --rule: #ddd4c4;
+    --brand: #122a33;
+    --brand-ink: #f4eee2;
+    --accent: #f2a900;
+    --save: #a8461a;
+    --display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+    --body: "Work Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0e2129; --panel: #163440; --ink: #f4eee2; --muted: #9fb3b0;
+      --rule: #2b4a55; --brand: #0a1a20; --brand-ink: #f4eee2; --accent: #f2a900; --save: #e8875a;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0e2129; --panel: #163440; --ink: #f4eee2; --muted: #9fb3b0;
+    --rule: #2b4a55; --brand: #0a1a20; --brand-ink: #f4eee2; --accent: #f2a900; --save: #e8875a;
+    color-scheme: dark;
+  }
+
+  body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.6; }
+  .doc { max-width: 820px; margin: 0 auto; padding-inline: 20px; padding-block: 0 56px; }
+
+  header.mast { background: var(--brand); color: var(--brand-ink); }
+  header.mast .inner { max-width: 820px; margin: 0 auto; padding-inline: 20px; padding-block: 36px 32px; display: grid; gap: 14px; }
+  .from { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  h1 { font-family: var(--display); font-weight: 800; font-size: clamp(38px, 7vw, 60px); line-height: 0.95; margin: 0; text-wrap: balance; letter-spacing: 0.01em; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px 28px; font-size: 14px; color: #c9d3cf; }
+  .meta b { color: var(--brand-ink); font-weight: 600; }
+
+  section { display: grid; gap: 14px; padding-block: 34px 0; }
+  h2 { font-family: var(--display); font-weight: 700; font-size: 30px; line-height: 1.05; margin: 0; text-transform: uppercase; letter-spacing: 0.02em; color: var(--ink); }
+  h2 small { display: block; font-family: var(--body); font-size: 13px; font-weight: 600; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 4px; }
+  p { margin: 0; max-width: 66ch; }
+  .lede { font-size: 19px; line-height: 1.5; max-width: 60ch; }
+  .lede strong { background: linear-gradient(transparent 62%, color-mix(in srgb, var(--accent) 45%, transparent) 62%); }
+
+  .price { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .price .box { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 20px; display: grid; gap: 6px; align-content: start; }
+  .price .label { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .price .amount { font-family: var(--display); font-weight: 800; font-size: 46px; line-height: 1; font-variant-numeric: tabular-nums; }
+  .price .amount span { font-family: var(--body); font-size: 16px; font-weight: 500; color: var(--muted); }
+  .price .note { font-size: 14px; color: var(--muted); }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 460px; }
+  th, td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--rule); }
+  thead th { font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); font-weight: 600; background: var(--panel); }
+  tbody tr:last-child td { border-bottom: none; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td.save { color: var(--save); font-weight: 700; }
+  tr.current td { color: var(--muted); }
+
+  ul.checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; max-width: 68ch; }
+  ul.checks li { padding-left: 26px; position: relative; }
+  ul.checks li::before { content: ""; position: absolute; left: 2px; top: 0.62em; width: 10px; height: 10px; background: var(--accent); transform: rotate(45deg); }
+
+  .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 26px; }
+  .two h3 { font-size: 15px; font-weight: 700; margin: 0 0 8px; }
+
+  ol.steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 0; border-left: 2px solid var(--rule); max-width: 66ch; }
+  ol.steps li { padding: 0 0 16px 20px; position: relative; }
+  ol.steps li:last-child { padding-bottom: 0; }
+  ol.steps li::before { content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--paper); border: 2px solid var(--accent); }
+  ol.steps .when { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); display: block; }
+
+  .contact { background: var(--brand); color: var(--brand-ink); border-radius: 6px; padding: 24px; display: grid; gap: 10px; }
+  .contact h2 { color: var(--brand-ink); }
+  .contact .lines { display: flex; flex-wrap: wrap; gap: 6px 28px; font-size: 16px; }
+  .contact .lines span { user-select: all; }
+  .fine { font-size: 13px; color: var(--muted); max-width: 70ch; }
+  hr { border: none; border-top: 1px solid var(--rule); margin: 34px 0 0; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .tabs a { color: var(--brand-ink); text-decoration: none; font-size: 14px; font-weight: 600; padding: 6px 14px; border-radius: 999px; border: 1px solid #3c5a64; }
+  .tabs a[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: #12100c; }
+  .tabs a:hover, .tabs a:focus-visible { border-color: var(--accent); }
+  .ahead { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 20px; display: grid; gap: 10px; }
+  .ahead a { color: var(--ink); font-weight: 700; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  .featured { border: 2px solid var(--accent); border-radius: 8px; padding: 24px; display: grid; gap: 12px; background: var(--panel); }
+  .featured .tag { justify-self: start; background: var(--accent); color: #12100c; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
+  .featured h2 { font-size: 34px; }
+  .bubbles { display: grid; gap: 8px; max-width: 520px; }
+  .bubble { padding: 9px 14px; border-radius: 16px; font-size: 15px; line-height: 1.4; max-width: 85%; }
+  .bubble.q { justify-self: end; background: var(--brand); color: var(--brand-ink); border-bottom-right-radius: 4px; }
+  .bubble.a { justify-self: start; background: var(--paper); border: 1px solid var(--rule); border-bottom-left-radius: 4px; }
+  .ideas { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+  .ideas.pairs { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .idea { border: 1px solid var(--rule); border-radius: 6px; padding: 18px; display: grid; gap: 8px; align-content: start; }
+  .idea h3 { margin: 0; font-size: 17px; line-height: 1.3; }
+  .idea p { font-size: 15px; }
+  .idea .why { font-size: 14px; color: var(--muted); }
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="inner">
+    <div class="from">ClymbUp · Website proposal</div>
+    <h1>Ideas for later</h1>
+    <div class="meta">
+      <span>Prepared for <b>Flagstaff Mall management</b></span>
+      <span>Prepared by <b>Kevin O'Donnell, ClymbUp</b></span>
+      <span><b>October 2026</b></span>
+    </div>
+    <nav class="tabs" aria-label="Proposal pages"><a href="../">Proposal</a><a href="./" aria-current="page">Ideas for later</a></nav>
+  </div>
+</header>
+
+<main class="doc">
+  <section>
+    <p class="lede">Shopping centers are adding <strong>AI helpers for shoppers and staff</strong>. Fashion Island in Newport Beach answers shopper questions by text, and Simon malls offer a concierge bot. Features like these used to be big-mall extras and are becoming standard. Once your new site is running, any of the ideas below can be added to it.</p>
+    <p class="fine">These are optional add-ons and not part of the quote on the first page. Each would be priced when you're ready.</p>
+  </section>
+
+  <section>
+    <div class="featured">
+      <span class="tag">Easiest to add first</span>
+      <h2>A shopper assistant, by chat and text</h2>
+      <p>A chat box on the website, and a phone number shoppers can text, that answer common questions any time of day. It reads from the same store directory, hours and events your team already keeps current, so its answers stay up to date without extra work.</p>
+      <div class="bubbles" aria-label="Example conversation">
+        <div class="bubble q">Is there a shoe store in the mall?</div>
+        <div class="bubble a">Yes. Here are the stores that sell shoes, with links to each one's page and hours.</div>
+        <div class="bubble q">What time do you close on Sunday?</div>
+        <div class="bubble a">Here are this Sunday's mall hours. A few stores keep their own hours; tell me which one you're heading to and I'll check it.</div>
+      </div>
+      <p class="fine">It could be ready on launch day. Questions it can't answer go to your team.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><small>For your staff</small>Less time updating the site</h2>
+    <div class="ideas pairs">
+      <div class="idea">
+        <h3>Text or call in your updates</h3>
+        <p>Text a number with "Add the trick-or-treat event, Oct 31, 4 to 7 PM", or call and say it. The assistant drafts the change and texts back a preview; reply YES to publish.</p>
+        <p class="why">Only approved staff phone numbers can make changes, and every change can be undone.</p>
+      </div>
+      <div class="idea">
+        <h3>Event flyer to event page</h3>
+        <p>Text or upload a photo of an event flyer. The details are read off the flyer and turned into an event page for you to approve.</p>
+        <p class="why">No retyping dates, times and descriptions.</p>
+      </div>
+      <div class="idea">
+        <h3>Holiday hours everywhere at once</h3>
+        <p>Change special hours once, and they update on the website, your Google listing and the shopper assistant together.</p>
+        <p class="why">Shoppers stop finding the wrong hours on Google.</p>
+      </div>
+      <div class="idea">
+        <h3>New events drafted as social posts</h3>
+        <p>Each new event becomes a ready-to-approve Facebook and Instagram post with the event image.</p>
+        <p class="why">Events get promoted without someone writing every post.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><small>For management and leasing</small>Know what shoppers want</h2>
+    <div class="ideas">
+      <div class="idea">
+        <h3>"What shoppers are looking for" report</h3>
+        <p>A monthly summary of what people search for and ask the assistant, including stores and services the mall doesn't have yet.</p>
+        <p class="why">Real demand data to bring to leasing conversations.</p>
+      </div>
+      <div class="idea">
+        <h3>Found correctly by AI search</h3>
+        <p>More shoppers ask Google, ChatGPT and other assistants what stores a mall has. Clean store and event data on the site helps them answer correctly.</p>
+        <p class="why">The answer people get matches your actual directory.</p>
+      </div>
+      <div class="idea">
+        <h3>Spanish version</h3>
+        <p>The website and shopper assistant offered in Spanish, translated automatically and kept in step with every update.</p>
+        <p class="why">Welcomes more of the shoppers you already serve.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="contact">
+      <h2>Talk through any of these</h2>
+      <p>Happy to walk through what each would take and cost once the new site is up.</p>
+      <div class="lines">
+        <span>Kevin O'Donnell</span>
+        <span>kevin@clymbup.ai</span>
+        <span>(760) 799-1947</span>
+        <span>clymbup.ai</span>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>
