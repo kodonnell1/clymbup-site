@@ -157,6 +157,7 @@
     @media (max-width: 860px) { .result { grid-template-columns: 1fr; } }
     .result .dx { background: var(--navy); color: var(--cream); padding: 24px 26px; }
     .result .dx .label { color: var(--amber); }
+    .result .dx .final.long { font-size: 17px; }
     .result .dx .final { font-size: 22px; font-weight: 600; line-height: 1.35; margin: 10px 0 18px; }
     .result .dx .key { border-top: 1px solid var(--line-dark); padding-top: 12px; font-size: 14px; color: #cfdad8; }
     .result .score { background: var(--paper); padding: 22px 24px; border: 1px solid var(--line); border-left: 0; }
@@ -442,7 +443,7 @@
     const gauge = j && j.score ? gaugeSvg(j.score) : '';
     return `<div class="result">
       <div class="dx"><span class="label">Final diagnosis · ${r.agent === 'starter' ? 'Microsoft starter agent' : 'Five-physician panel'} · ${esc(when)}</span>
-        <div class="final">${esc(f.diagnosis)}</div>
+        <div class="final${(f.diagnosis || '').length > 160 ? ' long' : ''}">${esc(f.diagnosis)}</div>
         ${f.answer_key ? `<div class="key"><span class="label" style="font-size:10.5px;">Answer key</span><div style="margin-top:4px;">${emph(f.answer_key)}</div></div>` : ''}</div>
       <div class="score">
         ${j ? `<div class="gauge-row">${gauge}<div><h3>Judge's score</h3><div class="fine">An independent AI judge compares the answer with the answer key. 4 or 5 counts as correct.</div>
