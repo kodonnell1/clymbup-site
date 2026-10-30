@@ -3,153 +3,606 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Diagnostic Reasoning Demo (Coming Soon) | ClymbUp.ai</title>
-  <meta name="description" content="A research demonstration of multi-agent diagnostic reasoning, inspired by Microsoft Research's MAI Diagnostic Orchestrator. Coming soon.">
-  <!-- Placeholder page: keep noindex until the real demo is built and Kevin approves it -->
+  <title>Diagnostic Reasoning Panel | ClymbUp Healthcare</title>
+  <meta name="description" content="A five-physician AI panel that works through diagnostic cases step by step, after Microsoft Research's MAI Diagnostic Orchestrator. A ClymbUp Healthcare research demonstration.">
   <meta name="robots" content="noindex,nofollow">
   <link rel="icon" type="image/png" sizes="16x16" href="/Clymbup16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/Clymbup32.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Big+Shoulders+Display:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/cu-base.css">
-  <script src="/assets/cu-animate.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Big+Shoulders+Display:wght@700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    .dx-stat .dx-stat-num { font-family: 'Big Shoulders Display', sans-serif; font-size: 44px; font-weight: 800; color: var(--accent); line-height: 1; margin: 0 0 6px; }
-    .dx-stat p { font-size: 14px; color: var(--muted); margin: 0; }
-    .dx-notice { border-left: 3px solid var(--accent); padding: 12px 16px; background: rgba(242,169,0,.08); border-radius: 6px; font-size: 14px; }
-    .dx-roles { list-style: none; padding: 0; margin: 12px 0 0; }
-    .dx-roles li { padding: 10px 0; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
-    .dx-roles li:first-child { border-top: 0; }
-    .dx-roles strong { color: var(--text); }
+    :root {
+      --navy: #122a33; --navy2: #183641; --navy3: #21485a; --cream: #f4eee2; --paper: #fbf8f2;
+      --ink: #12100c; --ink2: #3d4a4c; --muted: #6b7a79; --line: #e1d9c8; --line-dark: rgba(244,238,226,.14);
+      --amber: #f2a900; --amber-ink: #8a5d00; --rust: #c1531f; --good: #1f7a4d; --bad: #b3261e;
+      --hy: #1d62b0; --te: #d99a00; --ch: #b5501f; --st: #1f8a55; --ck: #6a45b8;
+      --radius: 12px; --shadow: 0 1px 2px rgba(18,42,51,.06), 0 8px 24px rgba(18,42,51,.08);
+      --display: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
+      --body: 'Work Sans', system-ui, sans-serif; --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body { background: var(--cream); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.55; }
+    a { color: inherit; }
+    button { font: inherit; cursor: pointer; }
+    h1, h2, h3 { font-family: var(--display); text-transform: uppercase; letter-spacing: .01em; line-height: 1.02; margin: 0; }
+
+    /* Header */
+    .top { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 16px; padding: 10px 20px;
+           background: var(--navy); color: var(--cream); border-bottom: 3px solid var(--amber); }
+    .top img { height: 34px; display: block; }
+    .top .sep { width: 1px; height: 34px; background: var(--line-dark); }
+    .top .ttl { font-family: var(--display); font-size: 22px; text-transform: uppercase; line-height: 1; }
+    .top .sub { font-size: 12px; color: #9fb3b0; margin-top: 3px; }
+    .top .pills { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .pill { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 5px 12px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+    .pill--model { background: var(--navy3); color: var(--cream); }
+    .pill--model::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--amber); }
+    .pill--warn { background: #f7e3cf; color: #7a3410; }
+
+    /* Shell */
+    .shell { display: grid; grid-template-columns: 320px 1fr; min-height: calc(100vh - 60px); }
+    .side { background: var(--navy2); color: var(--cream); padding: 20px 16px 40px; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; }
+    .main { padding: 32px clamp(16px, 4vw, 56px) 80px; min-width: 0; }
+    .wrap { max-width: 1040px; }
+    @media (max-width: 900px) {
+      .shell { grid-template-columns: 1fr; }
+      .side { position: static; height: auto; }
+      .top .pills .pill--model { display: none; }
+    }
+    @media (max-width: 560px) { .top .sub, .top .sep { display: none; } .top .ttl { font-size: 18px; } }
+
+    /* Sidebar */
+    .side-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .label { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); }
+    .btn-outline-light { background: transparent; color: var(--cream); border: 1px solid var(--line-dark); border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 600; }
+    .btn-outline-light:hover { border-color: var(--amber); color: var(--amber); }
+    .side-card { display: block; text-decoration: none; background: rgba(244,238,226,.05); border: 1px solid var(--line-dark); border-radius: 10px; padding: 14px; margin-bottom: 10px; }
+    .side-card:hover { border-color: rgba(242,169,0,.55); }
+    .side-card.active { border-left: 3px solid var(--amber); background: rgba(242,169,0,.08); }
+    .side-card .tag { font-family: var(--mono); font-size: 11px; color: var(--amber); }
+    .side-card h4 { margin: 4px 0 6px; font-size: 15px; font-weight: 600; line-height: 1.3; }
+    .side-card p { margin: 0; font-size: 12.5px; color: #b9c8c5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .side-card .meta { margin-top: 8px; display: flex; gap: 8px; align-items: center; font-size: 11.5px; color: #9fb3b0; }
+    .judge-badge { background: var(--amber); color: var(--ink); font-weight: 700; border-radius: 6px; padding: 1px 7px; font-size: 11px; }
+    .side .group { margin: 22px 0 10px; }
+    .side .note { font-size: 11.5px; color: #8fa5a2; margin-top: 18px; }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; gap: 8px; border: 0; border-radius: 999px; padding: 11px 20px; font-weight: 700; font-size: 14px; text-decoration: none; }
+    .btn--amber { background: var(--amber); color: var(--ink); box-shadow: 0 4px 14px rgba(242,169,0,.3); }
+    .btn--amber:hover { background: #ffb81a; }
+    .btn--navy { background: var(--navy); color: var(--cream); }
+    .btn--navy:hover { background: var(--navy3); }
+    .btn--ghost { background: transparent; border: 1px solid var(--line); color: var(--ink2); }
+    .btn--ghost:hover { border-color: var(--ink2); }
+    .btn[disabled] { opacity: .5; cursor: not-allowed; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+    /* Common blocks */
+    .kicker { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink2); margin-bottom: 14px; }
+    .hero h1 { font-size: clamp(42px, 6vw, 68px); }
+    .hero h1 em { font-style: normal; color: var(--rust); }
+    .lead { font-size: 17px; color: var(--ink2); max-width: 600px; margin: 18px 0 24px; }
+    .card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px 22px; }
+    .card--navy { background: var(--navy); color: var(--cream); border-color: var(--navy); }
+    .grid-hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center; }
+    @media (max-width: 1100px) { .grid-hero { grid-template-columns: 1fr; } }
+    .steps3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 36px; }
+    @media (max-width: 760px) { .steps3 { grid-template-columns: 1fr; } }
+    .steps3 .num { font-family: var(--display); font-size: 34px; color: var(--amber-ink); line-height: 1; }
+    .steps3 h3 { font-size: 20px; margin: 8px 0 6px; }
+    .steps3 p { margin: 0; font-size: 14px; color: var(--ink2); }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
+    @media (max-width: 760px) { .stats { grid-template-columns: 1fr; } }
+    .stat .v { font-family: var(--display); font-size: 40px; color: var(--navy); line-height: 1; }
+    .stat p { margin: 6px 0 0; font-size: 13.5px; color: var(--ink2); }
+    .fine { font-size: 12.5px; color: var(--muted); }
+    .section-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 40px 0 14px; }
+    .section-title h2 { font-size: 30px; }
+    .section-title .fine { max-width: 460px; }
+    .err { background: #fbe9e7; color: var(--bad); border: 1px solid #f3c4bf; border-radius: 10px; padding: 12px 14px; font-size: 14px; }
+    .notice { background: #fff5dc; border: 1px solid #f0d58a; border-radius: 10px; padding: 12px 14px; font-size: 13.5px; color: #5c4300; }
+    .spinner { width: 16px; height: 16px; border: 2px solid rgba(18,42,51,.2); border-top-color: var(--navy); border-radius: 50%; animation: spin .8s linear infinite; display: inline-block; vertical-align: -3px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) { .spinner { animation-duration: 3s; } }
+
+    /* Panel avatars */
+    .panel-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; text-align: center; }
+    .av { width: 54px; height: 54px; border-radius: 50%; display: inline-grid; place-items: center; color: #fff;
+          font-family: var(--display); font-size: 22px; box-shadow: 0 0 0 2px var(--cream), 0 4px 10px rgba(0,0,0,.25); }
+    .av.sm { width: 30px; height: 30px; font-size: 13px; box-shadow: 0 0 0 2px var(--paper); }
+    .av-hy { background: var(--hy); } .av-te { background: var(--te); color: var(--ink); } .av-ch { background: var(--ch); }
+    .av-st { background: var(--st); } .av-ck { background: var(--ck); }
+    .panel-row .dr { font-size: 10px; letter-spacing: .1em; color: var(--amber); margin-top: 10px; font-weight: 700; }
+    .panel-row .nm { font-weight: 700; font-size: 13px; }
+    .panel-row .rl { font-size: 11.5px; color: #b9c8c5; line-height: 1.35; margin-top: 3px; }
+    .panel-foot { border-top: 1px solid var(--line-dark); margin-top: 16px; padding-top: 12px; font-size: 14px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .panel-foot .pill { background: rgba(244,238,226,.08); color: var(--cream); border: 1px solid var(--line-dark); }
+
+    /* Case view */
+    .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+    .tagchip { font-family: var(--mono); font-size: 11.5px; background: #e9e1d0; color: var(--ink2); border-radius: 6px; padding: 3px 8px; }
+    .case-title { font-size: clamp(30px, 4vw, 46px); margin-bottom: 20px; }
+    .quote { position: relative; padding: 20px 22px 20px 64px; }
+    .quote::before { content: "\201C"; position: absolute; left: 18px; top: 4px; font-family: Georgia, serif; font-size: 64px; color: var(--amber); }
+    .quote .label { color: var(--ink2); }
+    .quote p { margin: 6px 0 0; font-size: 19px; font-style: italic; }
+    .two { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; margin-top: 14px; }
+    @media (max-width: 860px) { .two { grid-template-columns: 1fr; } }
+    details.record summary { cursor: pointer; list-style: none; font-weight: 600; display: flex; justify-content: space-between; }
+    details.record summary::after { content: "Show"; font-size: 12.5px; color: var(--amber-ink); font-weight: 700; }
+    details.record[open] summary::after { content: "Hide"; }
+    .md { margin-top: 12px; max-height: 520px; overflow: auto; font-size: 14px; border-top: 1px solid var(--line); padding-top: 10px; }
+    .md h4 { font-family: var(--body); text-transform: none; font-size: 15px; margin: 14px 0 6px; }
+    .md table { border-collapse: collapse; font-size: 12.5px; margin: 8px 0; }
+    .md td, .md th { border: 1px solid var(--line); padding: 4px 6px; text-align: left; vertical-align: top; }
+    .answer-key { background: repeating-linear-gradient(135deg, #f1ead9 0 10px, #ebe2cf 10px 20px); }
+    .answer-key.revealed { background: var(--paper); }
+    .convene { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 22px; }
+    .seg { display: inline-flex; background: #e9e1d0; border-radius: 999px; padding: 3px; }
+    .seg button { border: 0; background: transparent; border-radius: 999px; padding: 7px 14px; font-size: 13px; font-weight: 600; color: var(--ink2); }
+    .seg button.on { background: var(--navy); color: var(--cream); }
+    .code-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    input[type=text], input[type=password], textarea { font: inherit; border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 9px 11px; color: var(--ink); }
+    textarea { width: 100%; resize: vertical; }
+    input:focus, textarea:focus, button:focus-visible, a:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+    .tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tab { border: 1px solid var(--line); background: var(--paper); border-radius: 999px; padding: 6px 13px; font-size: 12.5px; font-family: var(--mono); color: var(--ink2); }
+    .tab.on { background: var(--navy); border-color: var(--navy); color: var(--cream); }
+
+    /* Result */
+    .result { display: grid; grid-template-columns: 1.5fr 1fr; gap: 0; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); margin-top: 16px; }
+    @media (max-width: 860px) { .result { grid-template-columns: 1fr; } }
+    .result .dx { background: var(--navy); color: var(--cream); padding: 24px 26px; }
+    .result .dx .label { color: var(--amber); }
+    .result .dx .final { font-size: 22px; font-weight: 600; line-height: 1.35; margin: 10px 0 18px; }
+    .result .dx .key { border-top: 1px solid var(--line-dark); padding-top: 12px; font-size: 14px; color: #cfdad8; }
+    .result .score { background: var(--paper); padding: 22px 24px; border: 1px solid var(--line); border-left: 0; }
+    .gauge-row { display: flex; gap: 16px; align-items: center; }
+    .gauge-row svg { flex: 0 0 76px; }
+    .gauge-row h3 { font-size: 22px; }
+    .verdict { display: inline-block; margin-top: 6px; font-size: 11.5px; font-weight: 700; letter-spacing: .08em; padding: 3px 9px; border-radius: 999px; }
+    .verdict.ok { background: #dcefe3; color: var(--good); } .verdict.no { background: #f8dedb; color: var(--bad); }
+    .ledger { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 12.5px; margin-top: 14px; }
+    .ledger td { padding: 4px 0; border-bottom: 1px dashed var(--line); }
+    .ledger td:last-child { text-align: right; }
+    .ledger tr.total td { border-bottom: 0; border-top: 2px solid var(--ink); font-weight: 700; padding-top: 8px; }
+    .ledger-note { font-size: 11.5px; color: var(--muted); margin-top: 6px; }
+    details.plain { margin-top: 10px; } details.plain summary { cursor: pointer; font-size: 13px; color: var(--amber-ink); font-weight: 600; }
+
+    /* Differential bars (single series, sequential amber, direct labels) */
+    .diff-row { display: grid; grid-template-columns: 1fr 48px; gap: 10px; align-items: center; margin: 12px 0; position: relative; }
+    .diff-name { font-size: 13.5px; line-height: 1.3; }
+    .diff-pct { font-family: var(--mono); font-size: 12.5px; color: var(--ink2); text-align: right; }
+    .diff-track { grid-column: 1 / -1; height: 8px; background: #ece4d3; border-radius: 4px; overflow: hidden; }
+    .diff-bar { height: 100%; background: var(--amber); border-radius: 0 4px 4px 0; }
+    .tip { position: fixed; z-index: 50; pointer-events: none; background: var(--navy); color: var(--cream); font-size: 12.5px; padding: 6px 9px; border-radius: 6px; max-width: 280px; box-shadow: var(--shadow); display: none; }
+
+    /* Timeline */
+    .timeline { position: relative; margin-top: 18px; padding-left: 52px; }
+    .timeline::before { content: ""; position: absolute; left: 17px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
+    .round { position: relative; margin-bottom: 16px; }
+    .round .num { position: absolute; left: -52px; top: 14px; width: 36px; height: 36px; border-radius: 50%; background: var(--paper); border: 2px solid var(--line); display: grid; place-items: center; font-family: var(--mono); font-size: 13px; font-weight: 500; }
+    .round.final .num { background: var(--amber); border-color: var(--amber); }
+    .round-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+    .chip { font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 3px 8px; border-radius: 6px; }
+    .chip.ask { background: #dde8f5; color: #174d8a; } .chip.order { background: #fbecc4; color: #6b4a00; } .chip.diagnose { background: #dcefe3; color: var(--good); }
+    .round-head h3 { font-family: var(--body); text-transform: none; font-size: 16px; font-weight: 600; }
+    .rationale { color: var(--ink2); font-size: 14px; margin: 8px 0 12px; }
+    .qa { display: grid; grid-template-columns: 1fr 1.4fr; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-bottom: 8px; background: #fff; }
+    @media (max-width: 760px) { .qa { grid-template-columns: 1fr; } }
+    .qa > div { padding: 10px 12px; font-size: 13.5px; }
+    .qa .k { background: #f6f1e6; }
+    .qa .small { font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 700; display: block; margin-bottom: 2px; }
+    .qa .a.clamp { max-height: 7.2em; overflow: hidden; position: relative; }
+    .qa .more { background: none; border: 0; padding: 0; color: var(--amber-ink); font-weight: 700; font-size: 12.5px; margin-top: 4px; }
+    .syn { font-size: 10.5px; color: var(--muted); margin-left: 4px; }
+    .dpills { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+    .dpill { font-size: 12px; background: #efe8d8; border-radius: 999px; padding: 3px 10px; color: var(--ink2); }
+    .dpill b { font-family: var(--mono); font-weight: 500; color: var(--ink); }
+    .debate-toggle { display: inline-flex; align-items: center; gap: 10px; background: none; border: 0; padding: 4px 0; font-weight: 600; color: var(--navy); font-size: 13.5px; }
+    .stack-av { display: inline-flex; } .stack-av .av { margin-left: -6px; } .stack-av .av:first-child { margin-left: 0; }
+    .voice { display: grid; grid-template-columns: 36px 1fr; gap: 10px; margin-top: 12px; }
+    .voice .who { font-weight: 700; font-size: 13px; }
+    .voice p { margin: 2px 0 0; font-size: 13.5px; color: var(--ink2); }
+    .check-banner { background: #f6ecd2; border-left: 3px solid var(--amber); border-radius: 6px; padding: 9px 12px; font-size: 13px; margin-bottom: 10px; }
+    .proposed { font-size: 18px; font-weight: 600; margin: 4px 0 8px; }
+    .live { display: flex; gap: 10px; align-items: center; background: #fff5dc; border: 1px solid #f0d58a; border-radius: 10px; padding: 12px 14px; margin-top: 14px; font-size: 14px; }
+    .pending .qa .k { background: #fff5dc; }
+    .form-grid { display: grid; gap: 14px; max-width: 760px; }
+    .form-grid label { font-weight: 600; font-size: 14px; display: block; margin-bottom: 6px; }
+    .form-grid .help { font-weight: 400; color: var(--muted); font-size: 12.5px; }
+    .page-foot { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   </style>
 </head>
 <body>
-<div class="wrap">
-
-  <header>
-    <img src="/assets/ClymbUpai_banner1_transparent.png" alt="ClymbUp.ai" class="brand-logo-img">
-        <nav>
-      <a class="chip" href="/">Home</a>
-      <a class="chip" href="/services/">Services</a>
-      <a class="chip" href="/about/">About</a>
-      <a class="chip" href="/contact/">Contact</a>
-      <a class="chip" href="/blog/">Blog</a>
-      <a class="chip" href="/system/">The System</a>
-    </nav>
+  <header class="top">
+    <a href="/healthcare/" aria-label="ClymbUp Healthcare"><img src="/assets/ClymbUpai_banner1_transparent.png" alt="ClymbUp.ai"></a>
+    <div class="sep"></div>
+    <div>
+      <div class="ttl">Diagnostic Reasoning Panel</div>
+      <div class="sub">A five-physician AI panel · after Microsoft Research's MAI-DxO</div>
+    </div>
+    <div class="pills">
+      <span class="pill pill--model" id="modelPill">Claude Opus 5.5 · $5,000 test budget</span>
+      <span class="pill pill--warn">Research demonstration · not for clinical use</span>
+    </div>
   </header>
 
-  <main class="stack" style="margin-top:32px;">
-
-    <!-- ── HERO ── -->
-    <section class="card card--hero reveal" style="text-align:center;">
-      <span class="eyebrow-badge">ClymbUp Healthcare · Coming soon</span>
-      <h1>Diagnostic Reasoning Demo</h1>
-      <p class="lead text-center" style="margin:0 auto 20px;max-width:620px;">A panel of AI agents that work through a medical case together, the way a team of physicians would: proposing diagnoses, choosing tests, and challenging each other's thinking. Inspired by Microsoft Research's MAI Diagnostic Orchestrator.</p>
-      <p class="dx-notice" style="max-width:620px;margin:0 auto;text-align:left;">Research demonstration only. Not medical advice and not a medical device. Don't enter personal health information. In an emergency, call 911.</p>
-    </section>
-
-    <!-- ── WHAT IT WILL DO ── -->
-    <section class="card reveal">
-      <p class="eyebrow">What the demo will do</p>
-      <h2>Three ways to explore a case</h2>
-      <div class="grid-3" style="margin-top:20px;">
-        <div class="card--flat reveal stagger-1">
-          <h3>Five sample cases</h3>
-          <p class="text-muted" style="font-size:14px;margin:0;">A ready-made set of complete cases in the sidebar. Pick one and watch the panel work through it from the first symptom to a final diagnosis.</p>
-        </div>
-        <div class="card--flat reveal stagger-2">
-          <h3>Interactive session</h3>
-          <p class="text-muted" style="font-size:14px;margin:0;">Describe symptoms in plain language and ask questions as you go. Each question is run through the agent panel, and you see how its thinking changes.</p>
-        </div>
-        <div class="card--flat reveal stagger-3">
-          <h3>Paste a full case</h3>
-          <p class="text-muted" style="font-size:14px;margin:0;">Paste an entire case study and get the panel's differential diagnosis, the tests it would order, and its final answer.</p>
-        </div>
+  <div class="shell">
+    <aside class="side" aria-label="Case library">
+      <div class="side-head">
+        <span class="label">Case library</span>
+        <a class="btn-outline-light" href="#/new" style="text-decoration:none;">+ New case</a>
       </div>
-    </section>
+      <a class="side-card" href="#/talk" id="talkCard">
+        <span class="label" style="font-size:10.5px;">● Interactive</span>
+        <h4>Talk to the panel</h4>
+        <p>Describe symptoms in your own words and answer the panel's questions live.</p>
+      </a>
+      <div class="group label">Sample cases (synthetic)</div>
+      <div id="caseList"><p class="fine" style="color:#9fb3b0;">Loading cases…</p></div>
+      <p class="note">The five sample cases are fully synthetic teaching cases released by Microsoft Research (MIT license). They describe no real patients.</p>
+    </aside>
 
-    <!-- ── THE PANEL ── -->
-    <section class="card reveal">
-      <p class="eyebrow">How the panel works</p>
-      <h2>Five agents, each with one job</h2>
-      <p style="max-width:700px;">Microsoft Research's design gives each AI agent a single role on a virtual physician panel. The agents debate before every step: ask a question, order a test, or commit to a diagnosis.</p>
-      <ul class="dx-roles">
-        <li><strong>Hypothesis</strong>: keeps a ranked list of the most likely diagnoses and updates it after every new finding.</li>
-        <li><strong>Test-Chooser</strong>: picks the tests that best tell those diagnoses apart.</li>
-        <li><strong>Challenger</strong>: plays devil's advocate, looking for evidence that contradicts the leading diagnosis.</li>
-        <li><strong>Stewardship</strong>: pushes for the most cost-effective path and avoids low-value tests.</li>
-        <li><strong>Checklist</strong>: checks that every order is valid and that the panel's reasoning stays consistent.</li>
-      </ul>
-    </section>
+    <main class="main" id="main" tabindex="-1"><div class="wrap" id="view"></div>
+      <div class="wrap page-foot fine">Research demonstration only. Not medical advice, not a medical device and not for patient care. Use fictional or published cases, never real patient information. In an emergency, call 911. Inspired by Microsoft Research's MAI Diagnostic Orchestrator (Nori et al., 2025); hospital-record and judge prompts adapted from <a href="https://github.com/microsoft/sdbench" target="_blank" rel="noopener">microsoft/sdbench</a> (MIT). ClymbUp is not affiliated with Microsoft. <a href="/healthcare/">ClymbUp for Healthcare Practices</a></div>
+    </main>
+  </div>
+  <div class="tip" id="tip" role="tooltip"></div>
 
-    <!-- ── THE RESEARCH ── -->
-    <section class="card reveal">
-      <p class="eyebrow">The research behind it</p>
-      <h2>What Microsoft Research published</h2>
-      <p style="max-width:700px;">In June 2025, Microsoft Research tested its MAI Diagnostic Orchestrator (MAI-DxO) on 304 challenging case records from the <em>New England Journal of Medicine</em>, presented step by step the way a real diagnosis unfolds.</p>
-      <div class="grid-3" style="margin-top:20px;">
-        <div class="card--stat dx-stat reveal stagger-1">
-          <p class="dx-stat-num">85.5%</p>
-          <p>Diagnostic accuracy at its highest-accuracy setting.</p>
-        </div>
-        <div class="card--stat dx-stat reveal stagger-2">
-          <p class="dx-stat-num">80% vs 20%</p>
-          <p>Accuracy in its standard setting, about four times the 20% average of the 21 physicians tested.</p>
-        </div>
-        <div class="card--stat dx-stat reveal stagger-3">
-          <p class="dx-stat-num">20% lower</p>
-          <p>Diagnostic testing costs than the physicians, and 70% lower than the same AI model used on its own.</p>
-        </div>
-      </div>
-      <p class="text-muted" style="font-size:14px;margin:20px 0 0;max-width:700px;"><strong style="color:var(--text);">Important context:</strong> the 21 physicians (5 to 20 years of experience, from the US and UK) worked without colleagues, textbooks or AI tools, which isn't how doctors normally practice. The cases were published puzzles, not live patients. Microsoft says the system has not been approved for clinical use and would first need safety testing, clinical validation and regulatory review.</p>
-      <p class="fine-print" style="margin-top:14px;">Source: Nori et al., "Sequential Diagnosis with Language Models," Microsoft Research, 2025 (<a href="https://arxiv.org/abs/2506.22405" target="_blank" rel="noopener">arXiv:2506.22405</a>), and Microsoft AI, "<a href="https://microsoft.ai/new/the-path-to-medical-superintelligence/" target="_blank" rel="noopener">The Path to Medical Superintelligence</a>." ClymbUp is not affiliated with Microsoft.</p>
-    </section>
+<script>
+(() => {
+  const API = '/api/dx';
+  const DOCS = [
+    ['hy', 'Hy', 'Hypothesis', 'Ranks the likeliest diagnoses', 'hypothesis'],
+    ['te', 'Te', 'Test-Chooser', 'Picks the most telling tests', 'test_chooser'],
+    ['ch', 'Ch', 'Challenger', 'Argues against the leading idea', 'challenger'],
+    ['st', 'St', 'Stewardship', 'Guards cost and value', 'stewardship'],
+    ['ck', 'Ck', 'Checklist', 'Catches errors before they count', 'checklist'],
+  ];
+  const view = document.getElementById('view');
+  let cases = [], meta = {}, pollTimer = null, agentChoice = 'panel';
 
-    <!-- ── BACK TO HEALTHCARE ── -->
-    <section class="card card--hero text-center reveal">
-      <p class="eyebrow">ClymbUp Healthcare</p>
-      <h2>Practical AI for healthcare practices, today</h2>
-      <p class="lead text-center" style="margin:8px auto 22px;">While the demo is in the works, see what ClymbUp builds for practices now: reminders, patient recall, phone answering and reputation management.</p>
-      <div class="cta-row">
-        <a class="btn btn--primary" href="/healthcare/">ClymbUp for Healthcare Practices →</a>
-        <a class="btn btn--ghost" href="tel:+17605655909">(760) 565-5909</a>
-      </div>
-    </section>
+  // ---------- helpers
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const money = n => '$' + Math.round(n || 0).toLocaleString('en-US');
+  const emph = s => esc(s).replace(/\*([^*]+)\*/g, '<em>$1</em>');
+  const pct = p => Math.round((p || 0) * 100) + '%';
+  const store = { get(k) { try { return localStorage.getItem(k) || ''; } catch { return ''; } },
+                  set(k, v) { try { localStorage.setItem(k, v); } catch {} } };
+  async function api(path, body) {
+    const res = await fetch(API + path, body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } : {});
+    let data = {}; try { data = await res.json(); } catch {}
+    if (!res.ok) throw new Error(data.error || ('The demo service returned ' + res.status + '.'));
+    return data;
+  }
+  function md(text) {
+    const lines = esc(text).split('\n'); const out = []; let para = [], table = [];
+    const inline = s => s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/(^|\W)\*(\S.*?\S|\S)\*(?=\W|$)/g, '$1<em>$2</em>');
+    const flushP = () => { if (para.length) { out.push('<p>' + inline(para.join(' ')) + '</p>'); para = []; } };
+    const flushT = () => { if (table.length) {
+        const rows = table.filter(r => !/^\|?\s*:?-{2,}/.test(r)).map(r => '<tr>' + r.replace(/^\||\|$/g, '').split('|').map(c => '<td>' + inline(c.trim()) + '</td>').join('') + '</tr>');
+        out.push('<table>' + rows.join('') + '</table>'); table = []; } };
+    for (const l of lines) {
+      if (/^\s*\|/.test(l)) { flushP(); table.push(l.trim()); continue; } else flushT();
+      const h = l.match(/^#{1,4}\s+(.*)/);
+      if (h) { flushP(); out.push('<h4>' + inline(h[1]) + '</h4>'); continue; }
+      if (!l.trim()) { flushP(); continue; }
+      para.push(l.trim());
+    }
+    flushP(); flushT(); return out.join('');
+  }
+  function avatar(d, sm) { return `<span class="av av-${d[0]}${sm ? ' sm' : ''}" aria-hidden="true">${d[1]}</span>`; }
+  function setActive() {
+    const h = location.hash;
+    document.querySelectorAll('.side-card').forEach(a => a.classList.toggle('active', a.getAttribute('href') === h || (h.startsWith('#/case/') && a.getAttribute('href') === h)));
+  }
 
-    <!-- ── FOOTER ── -->
-    <footer>
-      <div class="footer-grid">
+  // ---------- tooltip for differential bars
+  const tip = document.getElementById('tip');
+  document.addEventListener('mouseover', e => { const t = e.target.closest('[data-tip]'); if (!t) return; tip.textContent = t.dataset.tip; tip.style.display = 'block'; });
+  document.addEventListener('mousemove', e => { if (tip.style.display === 'block') { tip.style.left = Math.min(e.clientX + 14, innerWidth - 300) + 'px'; tip.style.top = (e.clientY + 14) + 'px'; } });
+  document.addEventListener('mouseout', e => { if (e.target.closest('[data-tip]')) tip.style.display = 'none'; });
+
+  // ---------- sidebar
+  async function loadCases() {
+    try {
+      const d = await api('/cases'); cases = d.cases; meta = d;
+      document.getElementById('caseList').innerHTML = cases.map(c => `
+        <a class="side-card" href="#/case/${c.id}">
+          <span class="tag">${esc(c.label)} · synthetic</span>
+          <h4>${esc(c.title)}</h4><p>${esc(c.summary)}</p>
+          <div class="meta">${c.best_score ? `<span class="judge-badge">Judge ${c.best_score}/5</span>` : ''}<span>${c.runs} saved run${c.runs === 1 ? '' : 's'}</span></div>
+        </a>`).join('');
+      setActive();
+    } catch (e) {
+      document.getElementById('caseList').innerHTML = `<p class="fine" style="color:#f3c4bf;">The demo service isn't reachable right now. ${esc(e.message)}</p>`;
+    }
+  }
+
+  // ---------- access code
+  function codeField(id) {
+    return `<div class="code-row"><label for="${id}" class="fine" style="color:var(--ink2);font-weight:600;">Access code</label>
+      <input type="password" id="${id}" value="${esc(store.get('dxcode'))}" placeholder="from ClymbUp" autocomplete="off" style="width:170px;"></div>`;
+  }
+  function readCode(id) { const v = (document.getElementById(id)?.value || '').trim(); if (v) store.set('dxcode', v); return v; }
+
+  // ---------- views
+  function home() {
+    view.innerHTML = `
+      <section class="grid-hero hero">
         <div>
-          <div class="footer-brand-name">ClymbUp.ai</div>
-          <p class="footer-tagline">Business informatics &amp; AI automation for local service businesses.</p>
-          <p class="fine-print">68155 Vega Rd, Cathedral City CA 92234</p>
-        </div>
-        <div>
-          <p class="footer-col-title">Contact</p>
-          <div class="footer-links">
-            <a href="tel:+17605655909">(760) 565-5909</a>
-            <a href="mailto:kevin@clymbup.ai" style="color:var(--accent2);">kevin@clymbup.ai</a>
+          <div class="kicker">Sequential diagnosis · research demonstration</div>
+          <h1>Five physicians. <em>One model.</em> Every step shown.</h1>
+          <p class="lead">An AI panel after Microsoft Research's MAI Diagnostic Orchestrator. It starts with a single line about the patient, asks questions and orders tests one round at a time, and commits to a diagnosis only when the evidence supports it, with an eye on what the workup costs.</p>
+          <div class="btn-row">
+            <a class="btn btn--amber" href="#/talk">▷ Talk to the panel</a>
+            <a class="btn btn--navy" href="#/case/${cases[0]?.id || ''}">Open a sample case</a>
+            <a class="btn btn--ghost" href="#/new">Add a case</a>
           </div>
         </div>
-        <div>
-          <p class="footer-col-title">Quick Links</p>
-          <div class="footer-links">
-            <a href="/">Home</a>
-            <a href="/services/">Services</a>
-            <a href="/healthcare/">Healthcare</a>
-            <a href="/about/">About</a>
-            <a href="/contact/">Contact</a>
-          </div>
+        <div class="card card--navy">
+          <div class="panel-row">${DOCS.map(d => `<div>${avatar(d)}<div class="dr">DR.</div><div class="nm">${d[2]}</div><div class="rl">${d[3]}</div></div>`).join('')}</div>
+          <div class="panel-foot"><span>Five specialists, played by one AI model, debating every step in the open.</span></div>
         </div>
+      </section>
+      <div class="steps3">
+        <div class="card"><div class="num">1</div><h3>One line to start</h3><p>Like a real referral, the panel sees only the presenting complaint, nothing else about the case.</p></div>
+        <div class="card"><div class="num">2</div><h3>Ask, test, repeat</h3><p>Each round the panel asks the patient questions or orders tests. A simulated hospital record answers from the full case, and only what was asked.</p></div>
+        <div class="card"><div class="num">3</div><h3>Commit, then audit</h3><p>The panel names a final diagnosis. An independent AI judge scores it against the answer key, and every test and visit is costed.</p></div>
       </div>
-      <div class="footer-bottom">
-        <span>© <span id="y"></span> Kevin O'Donnell DBA ClymbUp. All rights reserved.</span>
-      </div>
-    </footer>
+      <div class="section-title"><h2>The research behind it</h2></div>
+      <div class="card">
+        <p style="margin:0;">Microsoft Research tested MAI-DxO on 304 challenging case records from the <em>New England Journal of Medicine</em>, presented step by step.</p>
+        <div class="stats">
+          <div class="stat"><div class="v">85.5%</div><p>Diagnostic accuracy at its highest-accuracy setting.</p></div>
+          <div class="stat"><div class="v">80% vs 20%</div><p>Standard setting, about four times the 20% average of the 21 physicians tested.</p></div>
+          <div class="stat"><div class="v">20% lower</div><p>Testing costs than the physicians, and 70% lower than the same model used alone.</p></div>
+        </div>
+        <p class="fine" style="margin:14px 0 0;">Context: the physicians worked without colleagues, textbooks or AI tools, and the cases were published puzzles, not live patients. Microsoft says the system isn't approved for clinical use. Source: Nori et al., <a href="https://arxiv.org/abs/2506.22405" target="_blank" rel="noopener">"Sequential Diagnosis with Language Models"</a>, Microsoft Research, 2025. This ClymbUp demo is an independent rebuild and hasn't been benchmarked.</p>
+      </div>`;
+  }
 
-  </main>
-</div>
-<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  async function caseView(id, runId) {
+    view.innerHTML = '<p><span class="spinner"></span> Loading case…</p>';
+    let c; try { c = await api('/cases/' + id); } catch (e) { view.innerHTML = `<div class="err">${esc(e.message)}</div>`; return; }
+    const runs = c.runs;
+    view.innerHTML = `
+      <div class="tags"><span class="tagchip">Synthetic teaching case · Microsoft Research (MIT)</span><span class="tagchip">${esc(c.label)}</span></div>
+      <h1 class="case-title">${esc(c.title)}</h1>
+      <div class="card quote"><span class="label">What the panel sees first</span><p>${esc(c.summary)}</p></div>
+      <div class="two">
+        <div class="card"><details class="record"><summary>Full case record</summary><div class="md">${md(c.full_text)}</div></details>
+          <p class="fine" style="margin:6px 0 0;">Held by the simulated hospital record. The panel only learns what it asks for.</p></div>
+        <div class="card answer-key" id="akey"><div style="font-weight:600;">Answer key</div>
+          <p class="fine" style="margin:4px 0 10px;" id="akeyText">Hidden. Make your own call first.</p>
+          <button class="btn btn--ghost" id="reveal" style="padding:7px 14px;font-size:13px;background:var(--paper);">Reveal answer key</button></div>
+      </div>
+      <div class="convene">
+        <div class="seg" role="group" aria-label="Which agent">
+          <button data-agent="panel" class="${agentChoice === 'panel' ? 'on' : ''}">Five-physician panel</button>
+          <button data-agent="starter" class="${agentChoice === 'starter' ? 'on' : ''}">Microsoft starter agent</button>
+        </div>
+        ${codeField('code')}
+        <button class="btn btn--amber" id="convene">▷ Convene the panel</button>
+      </div>
+      <p class="fine" style="margin:8px 0 0;">Live run · ${esc(modelName())} · usually 1 to 3 minutes · needs an access code from ClymbUp. Saved runs below are free to explore.</p>
+      <div id="startErr"></div>
+      <div class="section-title"><h2>Panel sessions</h2><span class="fine">${runs.length} saved run${runs.length === 1 ? '' : 's'}</span></div>
+      <div class="tabs" id="tabs">${runs.map(r => `<a class="tab${r.id === runId ? ' on' : ''}" href="#/case/${id}/${r.id}">${r.agent === 'starter' ? 'Starter agent' : 'Panel'} · ${new Date(r.created).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}${r.score ? ' · ' + r.score + '/5' : ''}</a>`).join('') || '<span class="fine">No saved runs yet. Convene the panel to create one.</span>'}</div>
+      <div id="runArea"></div>`;
+    document.getElementById('reveal').onclick = () => {
+      document.getElementById('akeyText').innerHTML = `<strong style="color:var(--ink);font-size:15px;">${emph(c.final_diagnosis)}</strong>`;
+      document.getElementById('akey').classList.add('revealed'); document.getElementById('reveal').remove();
+    };
+    document.querySelectorAll('.seg button').forEach(b => b.onclick = () => { agentChoice = b.dataset.agent; document.querySelectorAll('.seg button').forEach(x => x.classList.toggle('on', x === b)); });
+    document.getElementById('convene').onclick = async () => {
+      const btn = document.getElementById('convene'); btn.disabled = true;
+      try { const r = await api('/runs', { access_code: readCode('code'), case_id: id, agent: agentChoice }); location.hash = `#/case/${id}/${r.id}`; }
+      catch (e) { document.getElementById('startErr').innerHTML = `<div class="err" style="margin-top:12px;">${esc(e.message)}</div>`; btn.disabled = false; }
+    };
+    const pick = runId || runs[0]?.id;
+    if (pick) showRun(pick, document.getElementById('runArea'));
+  }
+
+  function modelName() { return (meta.model || 'claude-opus-5-5') === 'claude-opus-5-5' ? 'Claude Opus 5.5' : meta.model; }
+
+  async function showRun(runId, area) {
+    clearTimeout(pollTimer);
+    let r; try { r = await api('/runs/' + runId); } catch (e) { area.innerHTML = `<div class="err" style="margin-top:14px;">${esc(e.message)}</div>`; return; }
+    area.innerHTML = renderRun(r);
+    wireRun(area, r);
+    if (r.status === 'running') pollTimer = setTimeout(() => { if (document.body.contains(area)) showRun(runId, area); }, 3000);
+  }
+
+  function renderRun(r) {
+    const rounds = r.rounds || [];
+    const last = rounds[rounds.length - 1];
+    const isPanel = r.agent !== 'starter';
+    let html = '';
+    if (r.status === 'running') html += `<div class="live"><span class="spinner"></span><span>The ${isPanel ? 'panel is deliberating' : 'starter agent is working'}. Round ${rounds.length + (last && last.items.some(i => i.a === null) ? 0 : 1)} in progress. This page updates by itself.</span></div>`;
+    if (r.status === 'error') html += `<div class="err" style="margin-top:14px;">${esc(r.error || 'The run stopped.')}</div>`;
+    if (r.status === 'done' && r.final) html += resultBlock(r);
+    if (r.status === 'waiting' && r.pending) html += pendingBlock(r);
+    if (rounds.length) {
+      html += `<div class="section-title"><h2>How the ${isPanel ? 'panel' : 'agent'} got there</h2><span class="fine">Each round: ${isPanel ? 'the debate, ' : ''}the decision, and what the ${r.mode === 'interactive' ? 'patient' : 'hospital record'} answered.</span></div>`;
+      if (isPanel) html += panelSummary(r);
+      html += '<div class="timeline">' + rounds.map(x => roundBlock(x, r)).join('') + '</div>';
+    }
+    return html;
+  }
+
+  function resultBlock(r) {
+    const f = r.final, j = f.judge, c = r.costs;
+    const when = r.finished ? new Date(r.finished).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
+    const gauge = j && j.score ? gaugeSvg(j.score) : '';
+    return `<div class="result">
+      <div class="dx"><span class="label">Final diagnosis · ${r.agent === 'starter' ? 'Microsoft starter agent' : 'Five-physician panel'} · ${esc(when)}</span>
+        <div class="final">${esc(f.diagnosis)}</div>
+        ${f.answer_key ? `<div class="key"><span class="label" style="font-size:10.5px;">Answer key</span><div style="margin-top:4px;">${emph(f.answer_key)}</div></div>` : ''}</div>
+      <div class="score">
+        ${j ? `<div class="gauge-row">${gauge}<div><h3>Judge's score</h3><div class="fine">An independent AI judge compares the answer with the answer key. 4 or 5 counts as correct.</div>
+          <span class="verdict ${j.correct ? 'ok' : 'no'}">${j.correct ? 'CORRECT' : 'NOT CORRECT'}</span></div></div>` : `<h3>No answer key</h3><p class="fine">This case has no answer key, so the judge didn't score it.</p>`}
+        ${r.mode !== 'interactive' ? `<table class="ledger" aria-label="Workup cost">
+          <tr><td>Questions asked</td><td>${c.questions}</td></tr>
+          <tr><td>Tests ordered</td><td>${c.tests}</td></tr>
+          <tr><td>Test costs</td><td>${money(c.test_cost)}</td></tr>
+          <tr><td>Physician visits ${c.visits} × $300</td><td>${money(c.visit_cost)}</td></tr>
+          <tr class="total"><td>Workup total</td><td>${money(c.total)}</td></tr></table>
+          ${c.itemized.length ? `<details class="plain"><summary>Itemized tests</summary><table class="ledger">${c.itemized.map(i => `<tr><td>${esc(i.test)}</td><td>${money(i.usd)}</td></tr>`).join('')}</table></details>` : ''}
+          <div class="ledger-note">Test prices are AI estimates of typical US hospital charges, not a real bill.</div>` : ''}
+      </div></div>
+      ${j ? `<details class="plain card" style="margin-top:12px;"><summary>Why the judge scored it this way</summary><div style="margin-top:8px;font-size:14px;white-space:pre-wrap;">${esc(j.reasoning)}</div></details>` : ''}`;
+  }
+
+  function gaugeSvg(score) {
+    const r = 30, C = 2 * Math.PI * r, frac = score / 5;
+    return `<svg width="76" height="76" viewBox="0 0 76 76" role="img" aria-label="Judge score ${score} of 5">
+      <circle cx="38" cy="38" r="${r}" fill="none" stroke="#ece4d3" stroke-width="7"/>
+      <circle cx="38" cy="38" r="${r}" fill="none" stroke="var(--amber)" stroke-width="7" stroke-linecap="round"
+        stroke-dasharray="${(C * frac).toFixed(1)} ${C.toFixed(1)}" transform="rotate(-90 38 38)"/>
+      <text x="38" y="40" text-anchor="middle" font-family="Big Shoulders Display" font-size="26" font-weight="800" fill="#12100c">${score}</text>
+      <text x="38" y="55" text-anchor="middle" font-family="Work Sans" font-size="8.5" fill="#6b7a79">OF 5</text></svg>`;
+  }
+
+  function panelSummary(r) {
+    const rounds = r.rounds, last = [...rounds].reverse().find(x => x.differential && x.differential.length);
+    const c = r.costs;
+    const diff = last ? last.differential : [];
+    return `<div class="two" style="grid-template-columns:1.2fr 1fr;">
+      <div class="card card--navy">
+        <div class="panel-row">${DOCS.map(d => `<div>${avatar(d)}<div class="dr">DR.</div><div class="nm">${d[2]}</div><div class="rl">${d[3]}</div></div>`).join('')}</div>
+        <div class="panel-foot"><span><strong>${rounds.length} deliberation${rounds.length === 1 ? '' : 's'}</strong> · ${esc(modelName())}</span>
+          <span class="pill">${c.questions} questions · ${c.tests} tests</span></div>
+      </div>
+      <div class="card"><h3 style="font-size:20px;">${r.status === 'done' ? 'Final differential' : 'Current differential'}</h3>
+        <div class="fine">The panel's probabilities${r.status === 'done' ? ' when it committed' : ' so far'}.</div>
+        ${diff.map(d => `<div class="diff-row" data-tip="${esc(d.diagnosis)}: ${pct(d.probability)}">
+            <div class="diff-name">${esc(d.diagnosis)}</div><div class="diff-pct">${pct(d.probability)}</div>
+            <div class="diff-track"><div class="diff-bar" style="width:${Math.max(1.5, d.probability * 100)}%"></div></div></div>`).join('') || '<p class="fine">No differential yet.</p>'}
+      </div></div>`;
+  }
+
+  function roundBlock(x, r) {
+    const n = x.items.length;
+    const head = x.kind === 'ask' ? `${n} question${n === 1 ? '' : 's'} for the patient`
+               : x.kind === 'order' ? `${n} test${n === 1 ? '' : 's'} from the ${r.mode === 'interactive' ? 'patient' : 'hospital record'}`
+               : 'Final diagnosis proposed';
+    const chip = x.kind === 'ask' ? 'Asked' : x.kind === 'order' ? 'Ordered' : 'Proposed';
+    const qa = x.items.map(it => `<div class="qa"><div class="k"><span class="small">${x.kind === 'ask' ? 'Question' : 'Test'}</span>${esc(it.q)}</div>
+        <div class="a${(it.a || '').length > 420 ? ' clamp' : ''}">${it.a === null ? '<span class="fine"><span class="spinner"></span> Waiting for the answer…</span>' : esc(it.a)}${it.synthetic ? '<span class="syn">(simulated result)</span>' : ''}</div></div>`).join('');
+    const diff = (x.differential || []).length ? `<div class="dpills">${x.differential.map(d => `<span class="dpill">${esc(d.diagnosis)} <b>${pct(d.probability)}</b></span>`).join('')}</div>` : '';
+    const debate = x.debate ? `<button class="debate-toggle" aria-expanded="false"><span class="stack-av">${DOCS.map(d => avatar(d, true)).join('')}</span> Hear the panel's debate</button>
+        <div class="debate" hidden>${DOCS.map(d => `<div class="voice">${avatar(d, true)}<div><div class="who">Dr. ${d[2]}</div><p>${esc(x.debate[d[4]])}</p></div></div>`).join('')}</div>` : '';
+    return `<div class="round${x.kind === 'diagnose' ? ' final' : ''}"><div class="num">${x.n}</div><div class="card">
+        <div class="round-head"><span class="chip ${x.kind}">${chip}</span><h3>${head}</h3></div>
+        ${x.kind === 'diagnose' ? `${x.debate ? `<div class="check-banner"><strong>Completion check:</strong> ${esc(x.debate.checklist)}</div>` : ''}<div class="proposed">${esc(x.diagnosis)}</div>` : ''}
+        ${x.rationale ? `<p class="rationale">${esc(x.rationale)}</p>` : ''}
+        ${qa}${diff}${debate}</div></div>`;
+  }
+
+  function pendingBlock(r) {
+    const p = r.pending;
+    const ask = p.kind === 'ask';
+    return `<div class="card pending" style="margin-top:16px;border-color:#f0d58a;">
+      <h3 style="font-size:22px;">${ask ? 'The panel has questions for you' : 'The panel ordered tests'}</h3>
+      <p class="fine" style="margin:4px 0 12px;">${ask ? 'Answer in your own words. Leave anything blank you don\'t know.' : 'If you have results, enter them. Otherwise leave them blank and the panel will work without them.'} Fictional details only, never real patient information.</p>
+      ${p.items.map((q, i) => `<div class="qa"><div class="k"><span class="small">${ask ? 'Question' : 'Test'}</span>${esc(q)}</div><div><textarea rows="2" data-ans="${i}" aria-label="Answer ${i + 1}"></textarea></div></div>`).join('')}
+      <div class="convene" style="margin-top:12px;">${codeField('rcode')}
+        <button class="btn btn--amber" id="sendAns">Send answers</button>
+        <button class="btn btn--ghost" id="dxNow">Ask for a diagnosis now</button></div>
+      <div id="ansErr"></div></div>`;
+  }
+
+  function wireRun(area, r) {
+    area.querySelectorAll('.debate-toggle').forEach(b => b.onclick = () => {
+      const d = b.nextElementSibling; d.hidden = !d.hidden; b.setAttribute('aria-expanded', String(!d.hidden));
+    });
+    area.querySelectorAll('.qa .a.clamp').forEach(a => {
+      const more = document.createElement('button'); more.className = 'more'; more.textContent = 'Show more';
+      more.onclick = () => { a.classList.toggle('clamp'); more.textContent = a.classList.contains('clamp') ? 'Show more' : 'Show less'; };
+      a.after(more);
+    });
+    const send = async (now) => {
+      const answers = [...area.querySelectorAll('[data-ans]')].map(t => t.value);
+      try { await api(`/runs/${r.id}/reply`, { access_code: readCode('rcode'), answers, diagnose_now: now }); showRun(r.id, area); }
+      catch (e) { area.querySelector('#ansErr').innerHTML = `<div class="err" style="margin-top:10px;">${esc(e.message)}</div>`; }
+    };
+    const s = area.querySelector('#sendAns'); if (s) s.onclick = () => send(false);
+    const d = area.querySelector('#dxNow'); if (d) d.onclick = () => send(true);
+  }
+
+  function talkView(runId) {
+    if (runId) {
+      view.innerHTML = `<div class="tags"><span class="tagchip">Interactive session</span></div><h1 class="case-title">Talk to the panel</h1>
+        <p class="fine">This session is private to whoever has the link and is deleted after 24 hours.</p><div id="runArea"></div>`;
+      return showRun(runId, document.getElementById('runArea'));
+    }
+    view.innerHTML = `
+      <div class="kicker">Interactive · you play the patient</div>
+      <h1 class="case-title">Talk to the panel</h1>
+      <div class="notice" style="max-width:760px;margin-bottom:18px;">Use a made-up or textbook patient. Never enter real patient information, and don't use this for a real health problem. In an emergency, call 911.</div>
+      <div class="form-grid">
+        <div><label for="opening">Describe the patient and the symptoms in your own words</label>
+          <textarea id="opening" rows="5" placeholder="For example: A 34-year-old woman with three days of fever, a stiff neck and a headache that's getting worse."></textarea></div>
+        <div class="convene" style="margin-top:0;">${codeField('tcode')}<button class="btn btn--amber" id="startTalk">▷ Start the session</button></div>
+        <div id="talkErr"></div>
+        <p class="fine">The panel will ask you questions and may order tests. You answer, and it keeps going until it commits to a diagnosis or you ask it to.</p>
+      </div>`;
+    document.getElementById('startTalk').onclick = async () => {
+      const b = document.getElementById('startTalk'); b.disabled = true;
+      try { const r = await api('/interactive', { access_code: readCode('tcode'), opening: document.getElementById('opening').value }); location.hash = '#/talk/' + r.id; }
+      catch (e) { document.getElementById('talkErr').innerHTML = `<div class="err">${esc(e.message)}</div>`; b.disabled = false; }
+    };
+  }
+
+  function newView(runId) {
+    if (runId) {
+      view.innerHTML = `<div class="tags"><span class="tagchip">Your case</span></div><h1 class="case-title">Panel session</h1>
+        <p class="fine">This session is private to whoever has the link and is deleted after 24 hours.</p><div id="runArea"></div>`;
+      return showRun(runId, document.getElementById('runArea'));
+    }
+    view.innerHTML = `
+      <div class="kicker">Add a case</div>
+      <h1 class="case-title">Run the panel on your own case</h1>
+      <div class="notice" style="max-width:760px;margin-bottom:18px;">Paste a fictional or published teaching case only, never real patient information. The simulated hospital record holds the full text and answers only what the panel asks.</div>
+      <div class="form-grid">
+        <div><label for="ctitle">Title <span class="help">(optional)</span></label><input type="text" id="ctitle" style="width:100%;" placeholder="A 62-year-old man with fatigue and a rash"></div>
+        <div><label for="ctext">Full case <span class="help">(history, exam, labs, imaging: everything the hospital record should know)</span></label><textarea id="ctext" rows="12"></textarea></div>
+        <div><label for="copen">Opening line <span class="help">(optional. What the panel sees first. Left blank, we write a one-sentence referral that gives nothing away.)</span></label><input type="text" id="copen" style="width:100%;"></div>
+        <div><label for="ckey">Answer key <span class="help">(optional. With it, the judge scores the panel's diagnosis.)</span></label><input type="text" id="ckey" style="width:100%;"></div>
+        <div class="convene" style="margin-top:0;">
+          <div class="seg" role="group" aria-label="Which agent"><button data-agent="panel" class="${agentChoice === 'panel' ? 'on' : ''}">Five-physician panel</button><button data-agent="starter" class="${agentChoice === 'starter' ? 'on' : ''}">Microsoft starter agent</button></div>
+          ${codeField('ncode')}<button class="btn btn--amber" id="startNew">▷ Convene the panel</button></div>
+        <div id="newErr"></div>
+      </div>`;
+    document.querySelectorAll('.seg button').forEach(b => b.onclick = () => { agentChoice = b.dataset.agent; document.querySelectorAll('.seg button').forEach(x => x.classList.toggle('on', x === b)); });
+    document.getElementById('startNew').onclick = async () => {
+      const b = document.getElementById('startNew'); b.disabled = true;
+      const g = id => document.getElementById(id).value;
+      try { const r = await api('/runs', { access_code: readCode('ncode'), agent: agentChoice, title: g('ctitle'), case_text: g('ctext'), opening: g('copen'), answer_key: g('ckey') }); location.hash = '#/new/' + r.id; }
+      catch (e) { document.getElementById('newErr').innerHTML = `<div class="err">${esc(e.message)}</div>`; b.disabled = false; }
+    };
+  }
+
+  // ---------- router
+  async function route() {
+    clearTimeout(pollTimer);
+    const parts = location.hash.replace(/^#\/?/, '').split('/');
+    setActive();
+    if (parts[0] === 'case' && parts[1]) await caseView(parts[1], parts[2]);
+    else if (parts[0] === 'talk') talkView(parts[1]);
+    else if (parts[0] === 'new') newView(parts[1]);
+    else home();
+    document.getElementById('main').scrollTo?.(0, 0); window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', route);
+  loadCases().then(route);
+})();
+</script>
 </body>
 </html>
