@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ClymbUp for Healthcare Practices | ClymbUp.ai</title>
+  <meta name="description" content="Patient reminders, recall, after-hours patient texting, phone answering and reputation management for healthcare practices, built by someone with almost 30 years in healthcare systems.">
+  <!-- noindex until Kevin approves the page; then switch to index,follow and add it to sitemap.xml and the footer -->
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="canonical" href="https://clymbup.ai/healthcare/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://clymbup.ai/" },
+      { "@type": "ListItem", "position": 2, "name": "ClymbUp for Healthcare Practices", "item": "https://clymbup.ai/healthcare/" }
+    ]
+  }
+  </script>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clymbup.ai/healthcare/">
+  <meta property="og:title" content="ClymbUp for Healthcare Practices | ClymbUp.ai">
+  <meta property="og:description" content="Patient reminders, recall, after-hours patient texting, phone answering and reputation management for healthcare practices, built by someone with almost 30 years in healthcare systems.">
+  <meta property="og:image" content="https://clymbup.ai/assets/ClymbUpai_banner1.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ClymbUp for Healthcare Practices | ClymbUp.ai">
+  <meta name="twitter:description" content="Patient reminders, recall, after-hours patient texting, phone answering and reputation management for healthcare practices, built by someone with almost 30 years in healthcare systems.">
+  <meta name="twitter:image" content="https://clymbup.ai/assets/ClymbUpai_banner1.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Patient communication and practice automation for healthcare practices",
+    "provider": {"@type": "Organization", "name": "ClymbUp.ai", "url": "https://clymbup.ai", "telephone": "+17605655909"},
+    "name": "ClymbUp for Healthcare Practices",
+    "description": "Patient reminders, recall, after-hours patient texting, phone answering and reputation management for healthcare practices, built by someone with almost 30 years in healthcare systems.",
+    "areaServed": ["Coachella Valley, CA", "US"]
+  }
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you handle HIPAA and patient information?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Before we handle any patient information, we sign a business associate agreement (BAA) with your practice, and we only use vendors that will sign one with us. Your written report spells out which parts of a build touch patient information and which don't."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will the after-hours texting line give medical advice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It handles the practical questions: hours, directions, rescheduling, and passing refill or records requests to your staff. Anything clinical goes to your staff, and anyone describing an emergency is told to call 911."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work with the scheduling system we already use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually. We start with what you already use. If your system has a way to connect, we build on it. If it doesn't, your report says so plainly and lays out the options."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do patients need to download an app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Reminders, confirmations and the texting line all work by regular text message, and the phone receptionist answers a regular phone call."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it talk to patients in Spanish?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The phone receptionist speaks English and Spanish, and patient texts can go out in the patient's preferred language."
+      }
+    }
+  ]
+}
+  </script>
+  <link rel="icon" type="image/png" sizes="16x16" href="/Clymbup16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Clymbup32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Big+Shoulders+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/cu-base.css">
+  <script src="/assets/cu-animate.js" defer></script>
+  <style>
+    /* Page-local helpers only; colors come from cu-base.css variables */
+    .hc-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+    @media (max-width: 720px) { .hc-groups { grid-template-columns: 1fr; } }
+    .hc-list { list-style: none; margin: 10px 0 0; padding: 0; }
+    .hc-list li { padding: 10px 0; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+    .hc-list li:first-child { border-top: 0; }
+    .hc-list strong { color: var(--text); display: block; margin-bottom: 2px; }
+    .hc-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+              padding: 2px 8px; border-radius: 999px; margin-left: 6px; vertical-align: 2px; }
+    .hc-tag--live { background: var(--accent); color: var(--ink); }
+    .hc-tag--build { border: 1px solid var(--line); color: var(--muted); }
+    .band--cream .hc-skill { background: rgba(18,16,12,.05); border-color: rgba(18,16,12,.1); }
+    .band--cream .hc-skill p { font-size: 14px; margin: 0; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img src="/assets/ClymbUpai_banner1_transparent.png" alt="ClymbUp.ai" class="brand-logo-img">
+        <nav>
+      <a class="chip" href="/">Home</a>
+      <a class="chip" href="/services/">Services</a>
+      <a class="chip" href="/about/">About</a>
+      <a class="chip" href="/contact/">Contact</a>
+      <a class="chip" href="/blog/">Blog</a>
+      <a class="chip" href="/system/">The System</a>
+    </nav>
+  </header>
+
+  <main class="stack" style="margin-top:32px;">
+
+    <!-- ── HERO ── -->
+    <section class="card card--hero reveal" style="text-align:center;">
+      <span class="eyebrow-badge">ClymbUp for Healthcare Practices</span>
+      <h1>Fewer empty slots.<br>Every patient call answered.</h1>
+      <p class="lead text-center" style="margin:0 auto 28px;max-width:620px;">ClymbUp helps medical, dental and specialty practices fill their schedules, answer patients when the front desk can't, and keep their reputation healthy. It's built by someone who has spent almost 30 years building systems inside healthcare, so we start from how your practice actually runs.</p>
+      <div class="cta-row">
+        <a class="btn btn--primary" href="/assessment/">Get your free business interview →</a>
+        <a class="btn btn--ghost" href="tel:+17605655909">(760) 565-5909</a>
+      </div>
+      <p class="fine-print" style="margin-top:14px;">The free business interview takes about 10 minutes. No obligation.</p>
+    </section>
+
+    <!-- ── KEVIN'S BACKGROUND ── -->
+    <div class="band band--cream reveal">
+      <span class="eyebrow-badge">Almost 30 years in healthcare</span>
+      <h2>We know healthcare from the inside.</h2>
+      <p class="lead" style="max-width:700px;">Kevin O'Donnell, ClymbUp's founder, has spent almost 30 years building the systems healthcare organizations run on. That experience goes into every ClymbUp Healthcare build.</p>
+      <div class="grid-3" style="margin-top:20px;">
+        <div class="card--flat hc-skill reveal stagger-1">
+          <h3>Systems and workflows</h3>
+          <p>Designing how work moves through a healthcare organization, from the front desk to the back office.</p>
+        </div>
+        <div class="card--flat hc-skill reveal stagger-2">
+          <h3>Databases and data warehouses</h3>
+          <p>Building the databases and warehouses that pull clinical, scheduling and billing data into one place people can trust.</p>
+        </div>
+        <div class="card--flat hc-skill reveal stagger-3">
+          <h3>Alerting systems</h3>
+          <p>Making sure the right person hears about the right problem right away, instead of finding it in a report days later.</p>
+        </div>
+        <div class="card--flat hc-skill reveal stagger-1">
+          <h3>Efficiency workflows</h3>
+          <p>Finding the steps that eat staff time and building them out of the day.</p>
+        </div>
+        <div class="card--flat hc-skill reveal stagger-2">
+          <h3>Auditing systems</h3>
+          <p>Checks that catch errors and gaps before they turn into compliance or billing problems.</p>
+        </div>
+        <div class="card--flat hc-skill reveal stagger-3">
+          <h3>ETL and integration</h3>
+          <p>Moving and cleaning data between systems that were never designed to talk to each other.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── COST ── -->
+    <section class="card reveal">
+      <p class="eyebrow">Where it leaks</p>
+      <h2>Where practices lose time and revenue</h2>
+      <div class="grid-3" style="margin-top:20px;">
+        <div class="card--flat reveal stagger-1">
+          <h3>No-shows and late cancellations</h3>
+          <p class="text-muted" style="font-size:14px;margin:0;">An empty slot can't be sold again once the hour has passed. Without a reminder that lets patients confirm or reschedule, you find out when the chair is already empty.</p>
+        </div>
+        <div class="card--flat reveal stagger-2">
+          <h3>Calls nobody can pick up</h3>
+          <p class="text-muted" style="font-size:14px;margin:0;">Patients call while the front desk is checking someone in, during lunch, and after hours. Many hang up instead of leaving a voicemail and call the next practice.</p>
+        </div>
+        <div class="card--flat reveal stagger-3">
+          <h3>Patients who quietly drift away</h3>
+          <p class="text-muted" style="font-size:14px;margin:0;">Overdue cleanings, missed annual visits and follow-ups that never got booked. They're already your patients, and often nobody reaches out.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WHAT WE BUILD ── -->
+    <section class="card reveal">
+      <p class="eyebrow">What we build</p>
+      <h2>Built around your practice</h2>
+      <p style="max-width:700px;">Every build starts with how your practice runs today: your scheduling system, your staff and your patients. Items marked <span class="hc-tag hc-tag--live" style="margin-left:0;">Running today</span> are working now. The rest we build for your practice.</p>
+      <div class="hc-groups">
+        <div class="card--flat reveal stagger-1">
+          <h3>Scheduling and no-shows</h3>
+          <ul class="hc-list">
+            <li><strong>Appointment reminders</strong>Patients confirm or reschedule by text, so you know about an open slot while there's still time to fill it.</li>
+            <li><strong>Waitlist backfill</strong>When someone cancels, patients on the waitlist get a text offering the open time.</li>
+            <li><strong>Patient recall</strong>Patients overdue for a cleaning, an annual visit or a follow-up get a friendly reminder to book.</li>
+            <li><strong>Pre-visit prep and intake reminders</strong>What to bring, how to prepare, and a nudge to finish forms before the visit.</li>
+          </ul>
+        </div>
+        <div class="card--flat reveal stagger-2">
+          <h3>Patient communication</h3>
+          <ul class="hc-list">
+            <li><strong>AI phone receptionist <span class="hc-tag hc-tag--live">Running today</span></strong>Answers when the front desk can't, in English or Spanish, takes the patient's details and sends your staff a summary.</li>
+            <li><strong>After-hours patient texting line</strong>Patients text a question at 9 PM and get an answer about hours, directions or rescheduling. Refill and records requests go to your staff. Never medical advice.</li>
+          </ul>
+        </div>
+        <div class="card--flat reveal stagger-3">
+          <h3>Reputation and feedback</h3>
+          <ul class="hc-list">
+            <li><strong>Review monitoring and drafted replies <span class="hc-tag hc-tag--live">Running today</span></strong>Google and Yelp watched every day. New reviews come with a drafted reply for your approval.</li>
+            <li><strong>Review requests after visits</strong>Happy patients get an easy link to leave a review, so your rating reflects the care you give.</li>
+            <li><strong>Post-visit feedback loop</strong>A short survey after each visit. Unhappy answers go straight to your practice manager, before they turn into a public review.</li>
+          </ul>
+        </div>
+        <div class="card--flat reveal stagger-1">
+          <h3>Practice data</h3>
+          <ul class="hc-list">
+            <li><strong>Practice dashboard</strong>No-shows, call volume, recall results and reviews in one place, updated every day.</li>
+            <li><strong>Referral follow-up</strong>Know which referred patients actually booked, and which ones fell through the cracks.</li>
+            <li><strong>Custom reports and alerts</strong>The report you've always wanted from your systems, or an alert when something needs attention.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── HOW IT WORKS ── -->
+    <section class="card reveal">
+      <p class="eyebrow">How it works</p>
+      <h2>Start with one problem, not a platform</h2>
+      <div class="steps">
+        <div class="step reveal stagger-1">
+          <div class="step-num">1</div>
+          <h3>Free business interview</h3>
+          <p>About 10 minutes on how your practice runs: calls, scheduling, no-shows, reviews and what frustrates your staff most.</p>
+        </div>
+        <div class="step reveal stagger-2">
+          <div class="step-num">2</div>
+          <h3>A written report</h3>
+          <p>Kevin reads it and sends you the one thing worth fixing first, what it's likely costing you, and the cheapest way to fix it, even when that isn't us.</p>
+        </div>
+        <div class="step reveal stagger-3">
+          <div class="step-num">3</div>
+          <h3>Built around your workflow</h3>
+          <p>We build one piece at a time, alongside your staff, and measure whether it worked before adding the next.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BUILT FOR HEALTHCARE ── -->
+    <section class="card reveal">
+      <p class="eyebrow">Built for healthcare</p>
+      <h2>Patient safety and privacy come first</h2>
+      <div class="grid-3" style="margin-top:20px;">
+        <div class="card--flat reveal stagger-1">
+          <h3>Never medical advice</h3>
+          <p class="text-muted" style="font-size:14px;margin:0;">Our tools handle scheduling and practical questions. Anything clinical goes to your staff, and anyone describing an emergency is told to call 911.</p>
+        </div>
+        <div class="card--flat reveal stagger-2">
+          <h3>Your staff stays in charge</h3>
+          <p class="text-muted" style="font-size:14px;margin:0;">Anything sensitive is drafted for a person on your team to approve. The AI handles the routine work, and your staff makes the calls that matter.</p>
+        </div>
+        <div class="card--flat reveal stagger-3">
+          <h3>Patient privacy</h3>
+          <p class="text-muted" style="font-size:14px;margin:0;">We sign a business associate agreement (BAA) with your practice before we handle any patient information, and we only use vendors that will sign one with us.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── DIAGNOSTIC DEMO TEASER ── -->
+    <section class="card reveal">
+      <p class="eyebrow">From the lab</p>
+      <h2>Diagnostic reasoning demo</h2>
+      <p style="max-width:700px;">Kevin is building a demonstration of multi-agent diagnostic reasoning, inspired by Microsoft Research's MAI-DxO work: a panel of AI agents that debate a case the way a team of physicians would. It's a research demonstration, not a clinical tool.</p>
+      <a class="btn btn--ghost" href="/healthcare/diagnostic-demo/">See what's coming →</a>
+    </section>
+
+    <!-- ── FAQ ── -->
+    <section class="card reveal">
+      <p class="eyebrow">Questions</p>
+      <h2>Common questions</h2>
+      <details>
+        <summary>How do you handle HIPAA and patient information?</summary>
+        <div class="details-body">Before we handle any patient information, we sign a business associate agreement (BAA) with your practice, and we only use vendors that will sign one with us. Your written report spells out which parts of a build touch patient information and which don't.</div>
+      </details>
+      <details>
+        <summary>Will the after-hours texting line give medical advice?</summary>
+        <div class="details-body">No. It handles the practical questions: hours, directions, rescheduling, and passing refill or records requests to your staff. Anything clinical goes to your staff, and anyone describing an emergency is told to call 911.</div>
+      </details>
+      <details>
+        <summary>Does it work with the scheduling system we already use?</summary>
+        <div class="details-body">Usually. We start with what you already use. If your system has a way to connect, we build on it. If it doesn't, your report says so plainly and lays out the options.</div>
+      </details>
+      <details>
+        <summary>Do patients need to download an app?</summary>
+        <div class="details-body">No. Reminders, confirmations and the texting line all work by regular text message, and the phone receptionist answers a regular phone call.</div>
+      </details>
+      <details>
+        <summary>Can it talk to patients in Spanish?</summary>
+        <div class="details-body">Yes. The phone receptionist speaks English and Spanish, and patient texts can go out in the patient's preferred language.</div>
+      </details>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section class="card card--hero text-center reveal">
+      <p class="eyebrow">Get started</p>
+      <h2>Find out where your practice is losing time</h2>
+      <p class="lead text-center" style="margin:8px auto 22px;">Start with a free business interview. Kevin reads it and emails you a written report on what's worth fixing first, or just call.</p>
+      <div class="cta-row">
+        <a class="btn btn--primary" href="/assessment/">Get your free business interview →</a>
+        <a class="btn btn--ghost" href="tel:+17605655909">(760) 565-5909</a>
+      </div>
+      <p class="fine-print" style="margin-top:16px;">Free. No obligation.</p>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">ClymbUp.ai</div>
+          <p class="footer-tagline">Business informatics &amp; AI automation for local service businesses.</p>
+          <p class="fine-print">68155 Vega Rd, Cathedral City CA 92234</p>
+        </div>
+        <div>
+          <p class="footer-col-title">Contact</p>
+          <div class="footer-links">
+            <a href="tel:+17605655909">(760) 565-5909</a>
+            <a href="mailto:kevin@clymbup.ai" style="color:var(--accent2);">kevin@clymbup.ai</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-col-title">Quick Links</p>
+          <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/services/">Services</a>
+            <a href="/ai-phone-answering-service/">AI Phone Answering</a>
+            <a href="/about/">About</a>
+            <a href="/contact/">Contact</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-col-title">Industries</p>
+          <div class="footer-links">
+            <a href="/plumbers/">Plumbers</a>
+            <a href="/hvac/">HVAC</a>
+            <a href="/electricians/">Electricians</a>
+            <a href="/carpet-cleaning/">Carpet Cleaning</a>
+            <a href="/garage-tech/">Garage Tech</a>
+            <a href="/junk-hauling/">Junk Hauling</a>
+            <a href="/landscaping/">Landscaping</a>
+            <a href="/car-dealership/">Car Dealerships</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="y"></span> Kevin O'Donnell DBA ClymbUp. All rights reserved.</span>
+      </div>
+    </footer>
+
+  </main>
+</div>
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+<script data-goatcounter="https://clymbup.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

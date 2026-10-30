@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diagnostic Reasoning Demo (Coming Soon) | ClymbUp.ai</title>
+  <meta name="description" content="A research demonstration of multi-agent diagnostic reasoning, inspired by Microsoft Research's MAI Diagnostic Orchestrator. Coming soon.">
+  <!-- Placeholder page: keep noindex until the real demo is built and Kevin approves it -->
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Clymbup16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Clymbup32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Big+Shoulders+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/cu-base.css">
+  <script src="/assets/cu-animate.js" defer></script>
+  <style>
+    .dx-stat .dx-stat-num { font-family: 'Big Shoulders Display', sans-serif; font-size: 44px; font-weight: 800; color: var(--accent); line-height: 1; margin: 0 0 6px; }
+    .dx-stat p { font-size: 14px; color: var(--muted); margin: 0; }
+    .dx-notice { border-left: 3px solid var(--accent); padding: 12px 16px; background: rgba(242,169,0,.08); border-radius: 6px; font-size: 14px; }
+    .dx-roles { list-style: none; padding: 0; margin: 12px 0 0; }
+    .dx-roles li { padding: 10px 0; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+    .dx-roles li:first-child { border-top: 0; }
+    .dx-roles strong { color: var(--text); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img src="/assets/ClymbUpai_banner1_transparent.png" alt="ClymbUp.ai" class="brand-logo-img">
+        <nav>
+      <a class="chip" href="/">Home</a>
+      <a class="chip" href="/services/">Services</a>
+      <a class="chip" href="/about/">About</a>
+      <a class="chip" href="/contact/">Contact</a>
+      <a class="chip" href="/blog/">Blog</a>
+      <a class="chip" href="/system/">The System</a>
+    </nav>
+  </header>
+
+  <main class="stack" style="margin-top:32px;">
+
+    <!-- ── HERO ── -->
+    <section class="card card--hero reveal" style="text-align:center;">
+      <span class="eyebrow-badge">ClymbUp Healthcare · Coming soon</span>
+      <h1>Diagnostic Reasoning Demo</h1>
+      <p class="lead text-center" style="margin:0 auto 20px;max-width:620px;">A panel of AI agents that work through a medical case together, the way a team of physicians would: proposing diagnoses, choosing tests, and challenging each other's thinking. Inspired by Microsoft Research's MAI Diagnostic Orchestrator.</p>
+      <p class="dx-notice" style="max-width:620px;margin:0 auto;text-align:left;">Research demonstration only. Not medical advice and not a medical device. Don't enter personal health information. In an emergency, call 911.</p>
+    </section>
+
+    <!-- ── WHAT IT WILL DO ── -->
+    <section class="card reveal">
+      <p class="eyebrow">What the demo will do</p>
+      <h2>Three ways to explore a case</h2>
+      <div class="grid-3" style="margin-top:20px;">
+        <div class="card--flat reveal stagger-1">
+          <h3>Five sample cases</h3>
+          <p class="text-muted" style="font-size:14px;margin:0;">A ready-made set of complete cases in the sidebar. Pick one and watch the panel work through it from the first symptom to a final diagnosis.</p>
+        </div>
+        <div class="card--flat reveal stagger-2">
+          <h3>Interactive session</h3>
+          <p class="text-muted" style="font-size:14px;margin:0;">Describe symptoms in plain language and ask questions as you go. Each question is run through the agent panel, and you see how its thinking changes.</p>
+        </div>
+        <div class="card--flat reveal stagger-3">
+          <h3>Paste a full case</h3>
+          <p class="text-muted" style="font-size:14px;margin:0;">Paste an entire case study and get the panel's differential diagnosis, the tests it would order, and its final answer.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── THE PANEL ── -->
+    <section class="card reveal">
+      <p class="eyebrow">How the panel works</p>
+      <h2>Five agents, each with one job</h2>
+      <p style="max-width:700px;">Microsoft Research's design gives each AI agent a single role on a virtual physician panel. The agents debate before every step: ask a question, order a test, or commit to a diagnosis.</p>
+      <ul class="dx-roles">
+        <li><strong>Hypothesis</strong>: keeps a ranked list of the most likely diagnoses and updates it after every new finding.</li>
+        <li><strong>Test-Chooser</strong>: picks the tests that best tell those diagnoses apart.</li>
+        <li><strong>Challenger</strong>: plays devil's advocate, looking for evidence that contradicts the leading diagnosis.</li>
+        <li><strong>Stewardship</strong>: pushes for the most cost-effective path and avoids low-value tests.</li>
+        <li><strong>Checklist</strong>: checks that every order is valid and that the panel's reasoning stays consistent.</li>
+      </ul>
+    </section>
+
+    <!-- ── THE RESEARCH ── -->
+    <section class="card reveal">
+      <p class="eyebrow">The research behind it</p>
+      <h2>What Microsoft Research published</h2>
+      <p style="max-width:700px;">In June 2025, Microsoft Research tested its MAI Diagnostic Orchestrator (MAI-DxO) on 304 challenging case records from the <em>New England Journal of Medicine</em>, presented step by step the way a real diagnosis unfolds.</p>
+      <div class="grid-3" style="margin-top:20px;">
+        <div class="card--stat dx-stat reveal stagger-1">
+          <p class="dx-stat-num">85.5%</p>
+          <p>Diagnostic accuracy at its highest-accuracy setting.</p>
+        </div>
+        <div class="card--stat dx-stat reveal stagger-2">
+          <p class="dx-stat-num">80% vs 20%</p>
+          <p>Accuracy in its standard setting, about four times the 20% average of the 21 physicians tested.</p>
+        </div>
+        <div class="card--stat dx-stat reveal stagger-3">
+          <p class="dx-stat-num">20% lower</p>
+          <p>Diagnostic testing costs than the physicians, and 70% lower than the same AI model used on its own.</p>
+        </div>
+      </div>
+      <p class="text-muted" style="font-size:14px;margin:20px 0 0;max-width:700px;"><strong style="color:var(--text);">Important context:</strong> the 21 physicians (5 to 20 years of experience, from the US and UK) worked without colleagues, textbooks or AI tools, which isn't how doctors normally practice. The cases were published puzzles, not live patients. Microsoft says the system has not been approved for clinical use and would first need safety testing, clinical validation and regulatory review.</p>
+      <p class="fine-print" style="margin-top:14px;">Source: Nori et al., "Sequential Diagnosis with Language Models," Microsoft Research, 2025 (<a href="https://arxiv.org/abs/2506.22405" target="_blank" rel="noopener">arXiv:2506.22405</a>), and Microsoft AI, "<a href="https://microsoft.ai/new/the-path-to-medical-superintelligence/" target="_blank" rel="noopener">The Path to Medical Superintelligence</a>." ClymbUp is not affiliated with Microsoft.</p>
+    </section>
+
+    <!-- ── BACK TO HEALTHCARE ── -->
+    <section class="card card--hero text-center reveal">
+      <p class="eyebrow">ClymbUp Healthcare</p>
+      <h2>Practical AI for healthcare practices, today</h2>
+      <p class="lead text-center" style="margin:8px auto 22px;">While the demo is in the works, see what ClymbUp builds for practices now: reminders, patient recall, phone answering and reputation management.</p>
+      <div class="cta-row">
+        <a class="btn btn--primary" href="/healthcare/">ClymbUp for Healthcare Practices →</a>
+        <a class="btn btn--ghost" href="tel:+17605655909">(760) 565-5909</a>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">ClymbUp.ai</div>
+          <p class="footer-tagline">Business informatics &amp; AI automation for local service businesses.</p>
+          <p class="fine-print">68155 Vega Rd, Cathedral City CA 92234</p>
+        </div>
+        <div>
+          <p class="footer-col-title">Contact</p>
+          <div class="footer-links">
+            <a href="tel:+17605655909">(760) 565-5909</a>
+            <a href="mailto:kevin@clymbup.ai" style="color:var(--accent2);">kevin@clymbup.ai</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-col-title">Quick Links</p>
+          <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/services/">Services</a>
+            <a href="/healthcare/">Healthcare</a>
+            <a href="/about/">About</a>
+            <a href="/contact/">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="y"></span> Kevin O'Donnell DBA ClymbUp. All rights reserved.</span>
+      </div>
+    </footer>
+
+  </main>
+</div>
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
