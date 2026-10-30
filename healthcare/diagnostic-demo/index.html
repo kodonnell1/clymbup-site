@@ -217,6 +217,10 @@
                    padding: 5px 12px; font-size: 12.5px; line-height: 1.35; text-align: left; max-width: 100%; }
     .sugg button:hover { border-color: var(--amber); background: #fff5dc; color: var(--ink); }
     .sugg button.on { background: var(--navy); border-color: var(--navy); color: var(--cream); }
+    .sugg .mic { display: inline-flex; align-items: center; gap: 6px; border-color: var(--amber); color: var(--amber-ink); font-weight: 700; }
+    .sugg .mic svg { width: 14px; height: 14px; }
+    .sugg .mic.rec { background: var(--rust); border-color: var(--rust); color: #fff; }
+    textarea.listening { outline: 2px solid var(--rust); outline-offset: 1px; }
     .sugg .lbl { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); align-self: center; margin-right: 2px; }
     .form-grid { display: grid; gap: 14px; max-width: 760px; }
     .form-grid label { font-weight: 600; font-size: 14px; display: block; margin-bottom: 6px; }
@@ -328,6 +332,32 @@
     ta.value = b.dataset.fill;
     box.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
     ta.focus();
+  });
+
+  // ---------- voice input: dictate into a box with the browser's speech recognition (Chrome, Edge, Safari)
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const MIC = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>';
+  const micBtn = () => SR ? `<button type="button" class="mic" data-mic aria-label="Speak instead of typing">${MIC}Speak</button>` : '';
+  let activeRec = null;
+  function stopListening() { try { activeRec && activeRec.stop(); } catch {} }
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-mic]'); if (!b) return;
+    if (b.classList.contains('rec')) return stopListening();
+    stopListening();
+    const box = b.closest('.sugg');
+    const ta = box.dataset.for ? document.getElementById(box.dataset.for) : box.parentElement.querySelector('textarea');
+    const base = ta.value.trim() ? ta.value.trim() + ' ' : '';
+    const rec = new SR(); activeRec = rec;
+    rec.lang = 'en-US'; rec.interimResults = true; rec.continuous = true;
+    rec.onresult = ev => {
+      let text = '';
+      for (let i = 0; i < ev.results.length; i++) text += ev.results[i][0].transcript;
+      ta.value = base + text.trim();
+    };
+    rec.onerror = ev => { if (ev.error === 'not-allowed') alert('Allow microphone access in your browser to speak your answers.'); };
+    rec.onend = () => { if (activeRec === rec) activeRec = null; b.classList.remove('rec'); b.innerHTML = MIC + 'Speak'; ta.classList.remove('listening'); };
+    b.classList.add('rec'); b.innerHTML = MIC + 'Listening… tap to stop'; ta.classList.add('listening');
+    try { rec.start(); } catch { rec.onend(); }
   });
 
   // ---------- tooltip for differential bars
@@ -542,7 +572,7 @@
       ${p.items.map((q, i) => {
         const opts = [...((p.suggestions || [])[i] || []), ask ? 'Not sure' : 'Not done'];
         return `<div class="qa"><div class="k"><span class="small">${ask ? 'Question' : 'Test'}</span>${esc(q)}</div><div><textarea rows="2" data-ans="${i}" aria-label="Answer ${i + 1}"></textarea>
-          <div class="sugg" data-for-ans="${i}">${opts.map(o => `<button type="button" data-fill="${esc(o)}">${esc(o)}</button>`).join('')}</div></div></div>`;
+          <div class="sugg" data-for-ans="${i}">${micBtn()}${opts.map(o => `<button type="button" data-fill="${esc(o)}">${esc(o)}</button>`).join('')}</div></div></div>`;
       }).join('')}
       <div class="convene" style="margin-top:12px;">${codeField('rcode')}
         <button class="btn btn--amber" id="sendAns">Send answers</button>
@@ -564,8 +594,8 @@
       try { await api(`/runs/${r.id}/reply`, { access_code: readCode('rcode'), answers, diagnose_now: now }); showRun(r.id, area); }
       catch (e) { area.querySelector('#ansErr').innerHTML = `<div class="err" style="margin-top:10px;">${esc(e.message)}</div>`; }
     };
-    const s = area.querySelector('#sendAns'); if (s) s.onclick = () => send(false);
-    const d = area.querySelector('#dxNow'); if (d) d.onclick = () => send(true);
+    const s = area.querySelector('#sendAns'); if (s) s.onclick = () => { stopListening(); send(false); };
+    const d = area.querySelector('#dxNow'); if (d) d.onclick = () => { stopListening(); send(true); };
   }
 
   function talkView(runId) {
@@ -581,7 +611,7 @@
       <div class="form-grid">
         <div><label for="opening">Describe the patient and the symptoms in your own words</label>
           <textarea id="opening" rows="5" placeholder="For example: A 34-year-old woman with three days of fever, a stiff neck and a headache that's getting worse."></textarea>
-          <div class="sugg" data-for="opening"><span class="lbl">Try one:</span>${SCENARIOS.map(([l, t]) => `<button type="button" data-fill="${esc(t)}" title="${esc(t)}">${esc(l)}</button>`).join('')}</div></div>
+          <div class="sugg" data-for="opening">${micBtn()}<span class="lbl">Try one:</span>${SCENARIOS.map(([l, t]) => `<button type="button" data-fill="${esc(t)}" title="${esc(t)}">${esc(l)}</button>`).join('')}</div></div>
         <div class="convene" style="margin-top:0;">${codeField('tcode')}<button class="btn btn--amber" id="startTalk">▷ Start the session</button></div>
         <div id="talkErr"></div>
         <p class="fine">The panel will ask you questions and may order tests. You answer, and it keeps going until it commits to a diagnosis or you ask it to.</p>
@@ -624,7 +654,7 @@
 
   // ---------- router
   async function route() {
-    clearTimeout(pollTimer);
+    clearTimeout(pollTimer); stopListening();
     const parts = location.hash.replace(/^#\/?/, '').split('/');
     setActive();
     if (parts[0] === 'case' && parts[1]) await caseView(parts[1], parts[2]);
