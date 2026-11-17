@@ -12,18 +12,18 @@
   --bg: #122a33;
 
   /* Text */
-  --text: #f4eee2;
+  --text: #f3f7fa;
   --muted: #9fb3b0;
 
-  /* Accents -- hazard amber + rust, replacing the old blue/mint pairing */
-  --accent:  #f2a900;
-  --accent2: #c1531f;
-  --ink:     #12100c;
+  /* Accents -- the ClymbUp logo blues (sky #58b0e0, mid #3f8fd8); replaced amber + rust on 2026-11-16 */
+  --accent:  #58b0e0;
+  --accent2: #3f8fd8;
+  --ink:     #10161c;
 
   /* Surfaces */
-  --panel:  rgba(244,238,226,.06);
-  --panel2: rgba(244,238,226,.03);
-  --line:   rgba(244,238,226,.12);
+  --panel:  rgba(243,247,250,.06);
+  --panel2: rgba(243,247,250,.03);
+  --line:   rgba(243,247,250,.12);
 
   /* Shadow */
   --shadow: 0 16px 48px rgba(0,0,0,.4);
@@ -70,8 +70,8 @@ body {
   line-height: 1.55;
   color: var(--text);
   background:
-    radial-gradient(ellipse 1400px 700px at 18% -8%, rgba(242,169,0,.15) 0%, transparent 58%),
-    radial-gradient(ellipse 900px 600px at 88% 8%,  rgba(193,83,31,.12) 0%, transparent 52%),
+    radial-gradient(ellipse 1400px 700px at 18% -8%, rgba(88,176,224,.15) 0%, transparent 58%),
+    radial-gradient(ellipse 900px 600px at 88% 8%,  rgba(63,143,216,.12) 0%, transparent 52%),
     var(--bg);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
@@ -147,7 +147,7 @@ nav {
 
 .chip {
   border: 1px solid var(--line);
-  background: rgba(244,238,226,.04);
+  background: rgba(243,247,250,.04);
   padding: 6px 13px;
   border-radius: 999px;
   text-decoration: none;
@@ -159,13 +159,13 @@ nav {
 }
 .chip:hover {
   color: var(--text);
-  border-color: rgba(244,238,226,.22);
-  background: rgba(244,238,226,.08);
+  border-color: rgba(243,247,250,.22);
+  background: rgba(243,247,250,.08);
 }
 .chip--active {
   color: var(--text);
-  border-color: rgba(242,169,0,.4);
-  background: rgba(242,169,0,.10);
+  border-color: rgba(88,176,224,.4);
+  background: rgba(88,176,224,.10);
 }
 
 /* 6. CARDS
@@ -179,8 +179,8 @@ nav {
 }
 
 .card--flat {
-  background: rgba(244,238,226,.04);
-  border: 1px solid rgba(244,238,226,.08);
+  background: rgba(243,247,250,.04);
+  border: 1px solid rgba(243,247,250,.08);
   border-radius: 14px;
   padding: 20px;
 }
@@ -203,8 +203,8 @@ article h1 {
 }
 
 .card--stat {
-  background: rgba(244,238,226,.04);
-  border: 1px solid rgba(244,238,226,.08);
+  background: rgba(243,247,250,.04);
+  border: 1px solid rgba(243,247,250,.08);
   border-radius: 14px;
   padding: 22px 18px;
   text-align: center;
@@ -291,8 +291,8 @@ h3 {
   gap: 8px;
   padding: 5px 14px 5px 9px;
   border-radius: 999px;
-  border: 1px solid rgba(242,169,0,.28);
-  background: rgba(242,169,0,.07);
+  border: 1px solid rgba(88,176,224,.28);
+  background: rgba(88,176,224,.07);
   font-size: var(--fs-sm);
   font-weight: 600;
   color: var(--text);
@@ -308,9 +308,9 @@ h3 {
 }
 
 @keyframes pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(242,169,0,.6); }
-  65%  { box-shadow: 0 0 0 7px rgba(242,169,0,0); }
-  100% { box-shadow: 0 0 0 0 rgba(242,169,0,0); }
+  0%   { box-shadow: 0 0 0 0 rgba(88,176,224,.6); }
+  65%  { box-shadow: 0 0 0 7px rgba(88,176,224,0); }
+  100% { box-shadow: 0 0 0 0 rgba(88,176,224,0); }
 }
 
 /* 9. BUTTONS
@@ -339,21 +339,21 @@ h3 {
 .btn--primary {
   background: var(--accent);
   color: var(--ink);
-  box-shadow: 0 4px 16px rgba(242,169,0,.28);
+  box-shadow: 0 4px 16px rgba(88,176,224,.28);
 }
 .btn--primary:hover {
-  background: #ffbb1f;
-  box-shadow: 0 6px 22px rgba(242,169,0,.36);
+  background: #7cc4ee;
+  box-shadow: 0 6px 22px rgba(88,176,224,.36);
 }
 
 .btn--ghost {
   border-color: var(--line);
-  background: rgba(244,238,226,.05);
+  background: rgba(243,247,250,.05);
   color: var(--text);
 }
 .btn--ghost:hover {
-  border-color: rgba(244,238,226,.28);
-  background: rgba(244,238,226,.09);
+  border-color: rgba(243,247,250,.28);
+  background: rgba(243,247,250,.09);
 }
 
 .btn--sm {
@@ -430,8 +430,8 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(242,169,0,.13);
-  border: 1px solid rgba(242,169,0,.32);
+  background: rgba(88,176,224,.13);
+  border: 1px solid rgba(88,176,224,.32);
   color: var(--accent);
   font-weight: 800;
   font-size: 14px;
@@ -508,12 +508,12 @@ h3 {
    ---------------------------------------------------------- */
 details {
   border: 1px solid var(--line);
-  background: rgba(244,238,226,.04);
+  background: rgba(243,247,250,.04);
   border-radius: 14px;
   padding: 14px 18px;
   transition: background .15s;
 }
-details[open] { background: rgba(244,238,226,.065); }
+details[open] { background: rgba(243,247,250,.065); }
 details + details { margin-top: 8px; }
 
 summary {
@@ -564,8 +564,8 @@ select {
   width: 100%;
   padding: 11px 14px;
   border-radius: 8px;
-  border: 1px solid rgba(244,238,226,.14);
-  background: rgba(244,238,226,.06);
+  border: 1px solid rgba(243,247,250,.14);
+  background: rgba(243,247,250,.06);
   color: var(--text);
   font-size: var(--fs-base);
   font-family: inherit;
@@ -576,8 +576,8 @@ select {
 input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):focus,
 textarea:focus,
 select:focus {
-  border-color: rgba(242,169,0,.5);
-  box-shadow: 0 0 0 3px rgba(242,169,0,.14);
+  border-color: rgba(88,176,224,.5);
+  box-shadow: 0 0 0 3px rgba(88,176,224,.14);
 }
 input::placeholder, textarea::placeholder { color: var(--muted); opacity: .7; }
 textarea { min-height: 110px; resize: vertical; }
@@ -590,8 +590,8 @@ select option { background: #16333d; color: var(--text); }
   align-items: flex-start;
   font-size: var(--fs-sm);
   color: var(--muted);
-  background: rgba(244,238,226,.04);
-  border: 1px solid rgba(244,238,226,.09);
+  background: rgba(243,247,250,.04);
+  border: 1px solid rgba(243,247,250,.09);
   padding: 14px;
   border-radius: 12px;
   line-height: 1.55;
@@ -641,8 +641,8 @@ select option { background: #16333d; color: var(--text); }
   letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--accent);
-  background: rgba(242,169,0,.10);
-  border: 1px solid rgba(242,169,0,.25);
+  background: rgba(88,176,224,.10);
+  border: 1px solid rgba(88,176,224,.25);
   padding: 4px 11px;
   border-radius: 999px;
   margin-bottom: 14px;
@@ -752,7 +752,7 @@ footer {
 .band--cream .eyebrow { color: var(--accent2); }
 .band--cream .lead,
 .band--cream .text-muted,
-.band--cream p:not(.eyebrow) { color: #4a453c; }
+.band--cream p:not(.eyebrow) { color: #3f4852; }
 .band--cream h1, .band--cream h2, .band--cream h3 { color: var(--ink); }
 .band--cream .eyebrow-badge { background: var(--ink); color: var(--accent); }
 
